@@ -1,0 +1,16 @@
+{
+  "extends": "tsconfig/base.json",
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": false,
+    "incremental": false,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+    "emitDeclarationOnly": false
+  }
+}

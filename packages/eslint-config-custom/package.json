@@ -1,17 +1,26 @@
 {
   "name": "eslint-config-custom",
   "version": "0.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "./base.js",
+    "./next.js",
+    "./react.js",
+    "./remix-react.js"
+  ],
   "dependencies": {
-    "eslint": "^7.23.0",
-    "eslint-config-next": "^12.0.8",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-react": "7.31.8",
-    "eslint-config-turbo": "latest"
-  },
-  "devDependencies": {
-    "typescript": "^4.7.4"
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "eslint": "^8.34.0",
+    "eslint-config-next": "^13.1.6",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-turbo": "^0.0.8",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-unicorn": "^45.0.2",
+    "prettier": "^2.8.4"
   },
   "publishConfig": {
     "access": "public"

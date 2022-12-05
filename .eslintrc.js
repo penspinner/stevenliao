@@ -1,10 +1,9 @@
+/** @type {import('@types/eslint').Linter.BaseConfig} */
 module.exports = {
   root: true,
-  // This tells ESLint to load the config from the package `eslint-config-custom`
-  extends: ["custom"],
-  settings: {
-    next: {
-      rootDir: ["apps/*/"],
-    },
+  // parser: '@typescript-eslint/parser',
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: ['./apps/*/tsconfig.json', './packages/*/tsconfig.json'],
   },
-};
+}

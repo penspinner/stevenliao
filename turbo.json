@@ -3,11 +3,14 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**", ".next/**", "build/**", "api/**", "public/build/**"]
     },
-    "lint": {
-      "outputs": []
+    "app-remix#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["api/index.js", "api/build/**", "public/build/**"]
     },
+    "check:eslint": {},
+    "check:typescript": {},
     "dev": {
       "cache": false
     }

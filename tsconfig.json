@@ -1,0 +1,18 @@
+{
+  "extends": "tsconfig/base.json",
+  "include": ["**/*.ts", "**/*.tsx"],
+  "references": [
+    {
+      "path": "apps/app-remix"
+    },
+    {
+      "path": "apps/app-next"
+    },
+    {
+      "path": "packages/personal-site"
+    },
+    {
+      "path": "packages/ui"
+    }
+  ]
+}

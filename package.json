@@ -10,16 +10,19 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "check:eslint": "turbo run check:eslint",
+    "check:typescript": "turbo run check:typescript",
+    "format": "prettier '**/*.{ts,tsx}' -w"
   },
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
-    "prettier": "latest",
-    "turbo": "latest"
+    "prettier": "^2.8.4",
+    "prettier-plugin-tailwindcss": "0.2.3",
+    "tsconfig": "workspace:*",
+    "turbo": "^1.8.1"
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {},
-  "packageManager": "pnpm@7.14.0"
+  "packageManager": "pnpm@7.27.1"
 }

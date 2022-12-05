@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .modal-overlay[data-state='open'] {
+    animation: modal-overlay-in 0.3s theme('transitionTimingFunction.out');
+  }
+
+  .modal-overlay[data-state='closed'] {
+    animation: modal-overlay-out 0.2s theme('transitionTimingFunction.in');
+  }
+
+  @keyframes modal-overlay-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-overlay-out {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .modal-content[data-state='open'] {
+    animation: modal-content-in 0.3s theme('transitionTimingFunction.out');
+  }
+
+  .modal-content[data-state='closed'] {
+    animation: modal-content-out 0.2s theme('transitionTimingFunction.in');
+  }
+
+  @keyframes modal-content-in {
+    0% {
+      opacity: 0;
+      transform: scaleX(0.95) scaleY(0.95);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scaleX(1) scaleY(1);
+    }
+  }
+
+  @keyframes modal-content-out {
+    0% {
+      opacity: 1;
+      transform: scaleX(1) scaleY(1);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scaleX(0.95) scaleY(0.95);
+    }
+  }
+}
+
+
+/* Used in Chrome to remove the marker. */
+summary {
+  list-style-type: none;
+}
+
+/* Used for Safari to remove the marker. */
+summary::-webkit-details-marker {
+  display: none;
+}
