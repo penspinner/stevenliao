@@ -9,13 +9,13 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
     "check:eslint": "turbo run check:eslint",
     "check:typescript": "turbo run check:typescript",
     "format": "prettier '**/*.{ts,tsx}' -w"
   },
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
+    "eslint-config-custom-next": "workspace:*",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "0.2.3",
     "tsconfig": "workspace:*",

@@ -3,7 +3,7 @@
 This project houses my personal site. It is a monorepo with a Remix app and a Next app that renders the same pages. The pages, components, and utilities are shared through packages. Note that this project is overengineered for learning purposes.
 
 - To check out the Remix version, visit https://stevenliao.vercel.app/.
-- The Next version is a WIP.
+- To check out the Next version, visit https://stevenliao-next.vercel.app/.
 
 ## Development
 

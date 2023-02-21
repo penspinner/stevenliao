@@ -4,9 +4,6 @@
   "exclude": ["node_modules"],
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
     "emitDeclarationOnly": false,
     "noEmit": true,
     "plugins": [
