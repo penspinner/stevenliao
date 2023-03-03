@@ -1,6 +1,8 @@
-import { json, V2_MetaFunction } from '@remix-run/node'
+import type { V2_MetaFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { Article, Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
+import type { Article } from 'personal-site'
+import { Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
 
 import { createCacheControlHeaders } from '~/utils'
 

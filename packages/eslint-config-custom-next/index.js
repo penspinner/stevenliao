@@ -6,7 +6,7 @@ module.exports = {
   plugins: ['import'],
   overrides: [
     {
-      files: ['app/**/*.tsx', 'app/**/*.ts'],
+      files: ['app/**/*.tsx', 'app/**/*.ts', 'next.config.mjs'],
       rules: {
         // The exception to this rule is when dealing with files that are meant to work
         // dependencies that are meant to work with default exports.

@@ -2,18 +2,17 @@
   "name": "eslint-config-custom",
   "version": "0.0.0",
   "license": "MIT",
-  "main": "index.js",
+  "main": "base.js",
   "files": [
     "./base.js",
-    "./react.js",
-    "./remix-react.js"
+    "./react.js"
   ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@typescript-eslint/parser": "^5.52.0",
-    "eslint": "^8.34.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
-    "eslint-config-turbo": "^0.0.8",
+    "eslint-config-turbo": "^0.0.9",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "7.32.2",

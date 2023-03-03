@@ -64,6 +64,7 @@ module.exports = {
             'ts-check': 'allow-with-description',
           },
         ],
+        '@typescript-eslint/consistent-type-imports': 'error',
         // https://github.com/typescript-eslint/typescript-eslint/tree/master
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-unnecessary-condition': 'error',

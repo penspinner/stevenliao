@@ -1,7 +1,7 @@
 import { Card } from '~/components/card'
 import { SimpleLayout } from '~/components/simple-layout'
 import { formatDate } from '~/lib/format-date'
-import { Article } from '~/lib/get-articles'
+import type { Article } from '~/lib/get-articles'
 
 export const articlesTitle = 'Articles - Steven Liao'
 export const articlesDescription =

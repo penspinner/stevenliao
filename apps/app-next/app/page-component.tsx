@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { Article, Index } from 'personal-site'
+import type { Article } from 'personal-site'
+import { Index } from 'personal-site'
 
 export const IndexPageComponent = ({ articles }: { articles: Article[] }) => {
   return (

@@ -4,7 +4,7 @@ const glob = require('glob')
 const { flatRoutes } = require('remix-flat-routes')
 
 const packages = glob
-  .sync('packages/**/package.json', {
+  .globSync('packages/**/package.json', {
     cwd: path.join(__dirname, '..', '..'),
     ignore: ['**/node_modules/**'],
     absolute: true,

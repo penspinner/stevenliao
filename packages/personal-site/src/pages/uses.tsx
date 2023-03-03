@@ -1,5 +1,6 @@
 import { Card } from '~/components/card'
-import { Section, SectionProps } from '~/components/section'
+import type { SectionProps } from '~/components/section'
+import { Section } from '~/components/section'
 import { SimpleLayout } from '~/components/simple-layout'
 
 export const usesTitle = 'Uses - Steven Liao'

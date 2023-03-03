@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['custom/remix-react'],
+  extends: ['custom-remix'],
   overrides: [
     {
       files: ['vitest.config.ts'],

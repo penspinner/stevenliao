@@ -3,7 +3,7 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import * as React from 'react'
 
-import { Field } from '~/design-system/fields/field'
+import { Field } from './field'
 
 type FieldListboxProps<Multiple extends boolean, TType extends Record<string, unknown>> = {
   getOptionKey: (option: TType) => string

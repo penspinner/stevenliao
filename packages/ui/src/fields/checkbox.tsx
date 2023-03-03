@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-import { Field } from '~/design-system/fields/field'
+import { Field } from './field'
 
 type CheckboxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>
 

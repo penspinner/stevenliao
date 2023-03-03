@@ -10,13 +10,13 @@ This project houses my personal site. It is a monorepo with a Remix app and a Ne
 1. Build the package in `personal-site` and watch for changes:
 
    ```
-   pnpm --filter ./packages/personal-site watch
+   pnpm --filter personal-site watch
    ```
 
 2. Start the development server for the app you're working on. For example, to start the Remix server, run:
 
    ```
-   pnpm --filter ./apps/app-remix dev
+   pnpm --filter app-remix dev
    ```
 
 3. Visit the url that is logged to the console from the development server.

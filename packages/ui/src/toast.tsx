@@ -1,7 +1,7 @@
 import { CheckCircleIcon, XCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import type { ToastProps as RadixToastProps } from '@radix-ui/react-toast'
 import {
   Toast as RadixToast,
-  ToastProps as RadixToastProps,
   ToastViewport as RadixToastViewport,
   ToastClose,
   ToastDescription,

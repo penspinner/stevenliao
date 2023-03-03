@@ -3,7 +3,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ColorScheme, Document, Layout } from 'personal-site'
+import type { ColorScheme } from 'personal-site'
+import { Document, Layout } from 'personal-site'
 import * as React from 'react'
 
 export const RootLayoutComponent = ({

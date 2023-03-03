@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 
-import { Link, LinkProps } from '~/design-system/link'
-import { Spinner } from '~/design-system/spinner'
+import { Spinner } from './spinner'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean
@@ -26,12 +25,6 @@ export const Button = ({
       {children}
     </button>
   )
-}
-
-type ButtonLinkProps = LinkProps & Pick<ButtonProps, 'variant'>
-
-export const ButtonLink = ({ className, variant = 'contained', ...props }: ButtonLinkProps) => {
-  return <Link {...props} className={clsx(getButtonVariantClassName(variant), className)} />
 }
 
 const getButtonVariantClassName = (variant: ButtonProps['variant']) => {

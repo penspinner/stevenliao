@@ -5,7 +5,7 @@ module.exports = {
   env: {
     es2021: true,
   },
-  extends: ['./react'],
+  extends: ['custom/react'],
   plugins: ['import'],
   overrides: [
     {

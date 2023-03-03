@@ -1,4 +1,5 @@
-import { Article, Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
+import type { Article } from 'personal-site'
+import { Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
 
 export const metadata = {
   title: articlesTitle,

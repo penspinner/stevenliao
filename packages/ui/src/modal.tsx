@@ -1,11 +1,11 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import type { DialogProps } from '@radix-ui/react-dialog'
 import {
   Dialog,
   DialogClose,
   DialogContent,
   DialogOverlay,
   DialogPortal,
-  DialogProps,
 } from '@radix-ui/react-dialog'
 
 export const Modal = ({ children, ...props }: DialogProps) => {

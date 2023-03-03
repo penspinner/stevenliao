@@ -1,4 +1,5 @@
-import { json, LinksFunction, LoaderArgs, V2_MetaFunction } from '@remix-run/node'
+import type { LinksFunction, LoaderArgs, V2_MetaFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
 import {
   isRouteErrorResponse,
   Link,

@@ -1,5 +1,5 @@
 import { useFocusRing } from '@react-aria/focus'
-import { GridRowProps } from '@react-aria/grid'
+import type { GridRowProps } from '@react-aria/grid'
 import {
   useTable,
   useTableCell,
@@ -9,7 +9,8 @@ import {
   useTableRowGroup,
 } from '@react-aria/table'
 import { mergeProps } from '@react-aria/utils'
-import { TableState, TableStateProps, useTableState } from '@react-stately/table'
+import type { TableState, TableStateProps } from '@react-stately/table'
+import { useTableState } from '@react-stately/table'
 import clsx from 'clsx'
 import * as React from 'react'
 

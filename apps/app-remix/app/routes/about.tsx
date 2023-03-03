@@ -1,4 +1,4 @@
-import { V2_MetaFunction } from '@remix-run/node'
+import type { V2_MetaFunction } from '@remix-run/node'
 import { About, aboutDescription, aboutTitle } from 'personal-site'
 
 export const meta: V2_MetaFunction = ({ matches }) => {

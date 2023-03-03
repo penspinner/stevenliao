@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import * as React from 'react'
 
-import { Field } from '~/design-system/fields/field'
+import { Field } from './field'
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   leading?: React.ReactNode

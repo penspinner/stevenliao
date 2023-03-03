@@ -1,7 +1,8 @@
-import { json, V2_MetaFunction } from '@remix-run/node'
+import type { V2_MetaFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
 import { useLoaderData, useRouteError } from '@remix-run/react'
+import type { Article } from 'personal-site'
 import {
-  Article,
   getArticles,
   Index,
   indexDescription,
