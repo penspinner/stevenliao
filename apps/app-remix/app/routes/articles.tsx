@@ -1,10 +1,12 @@
-import type { V2_MetaFunction } from '@remix-run/node'
-import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
+import type { V2_MetaFunction } from '@vercel/remix'
+import { json } from '@vercel/remix'
 import type { Article } from 'personal-site'
 import { Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
 
 import { createCacheControlHeaders } from '~/utils'
+
+export const config = { runtime: 'edge' }
 
 export const meta: V2_MetaFunction = ({ matches }) => {
   return [

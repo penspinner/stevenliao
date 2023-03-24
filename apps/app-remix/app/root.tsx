@@ -1,5 +1,3 @@
-import type { LinksFunction, LoaderArgs, V2_MetaFunction } from '@remix-run/node'
-import { json } from '@remix-run/node'
 import {
   isRouteErrorResponse,
   Link,
@@ -15,6 +13,8 @@ import {
   useNavigation,
   useRouteError,
 } from '@remix-run/react'
+import type { LinksFunction, LoaderArgs, V2_MetaFunction } from '@vercel/remix'
+import { json } from '@vercel/remix'
 import NProgress from 'nprogress'
 import nProgressCSSHref from 'nprogress/nprogress.css'
 import { Document as Doc, Layout, RootErrorBoundary, RootNotFound } from 'personal-site'

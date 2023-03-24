@@ -1,5 +1,5 @@
-import { createCookie, json } from '@remix-run/node'
-import type { ActionArgs } from '@remix-run/node'
+import { createCookie, json } from '@vercel/remix'
+import type { ActionArgs } from '@vercel/remix'
 import type { ColorScheme } from 'personal-site'
 
 const colorSchemeCookie = createCookie('color-scheme', {
