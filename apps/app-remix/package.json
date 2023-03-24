@@ -12,35 +12,35 @@
   "dependencies": {
     "@heroicons/react": "^2.0.16",
     "@react-aria/ssr": "^3.5.0",
-    "@remix-run/node": "^1.14.0",
-    "@remix-run/react": "^1.14.0",
-    "@remix-run/serve": "^1.14.0",
-    "@remix-run/vercel": "^1.14.0",
+    "@remix-run/node": "^1.14.3",
+    "@remix-run/react": "^1.14.3",
+    "@remix-run/serve": "^1.14.3",
+    "@remix-run/vercel": "^1.14.3",
     "clsx": "1.2.1",
-    "isbot": "^3.6.6",
+    "isbot": "^3.6.7",
     "nprogress": "^0.2.0",
     "personal-site": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "remix-flat-routes": "^0.5.7"
+    "remix-flat-routes": "^0.5.8"
   },
   "devDependencies": {
-    "@remix-run/dev": "^1.14.0",
+    "@remix-run/dev": "^1.14.3",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/set-cookie-parser": "^2.4.2",
-    "autoprefixer": "10.4.13",
-    "eslint": "^8.35.0",
+    "autoprefixer": "10.4.14",
+    "eslint": "^8.36.0",
     "eslint-config-custom-remix": "workspace:*",
-    "glob": "^9.2.1",
+    "glob": "^9.3.2",
     "happy-dom": "^8.9.0",
-    "prettier": "2.8.4",
-    "prettier-plugin-tailwindcss": "0.2.4",
+    "prettier": "2.8.6",
+    "prettier-plugin-tailwindcss": "0.2.5",
     "react-refresh": "^0.14.0",
     "tsconfig": "workspace:*",
     "types": "workspace:*",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.2"
   },
   "engines": {
     "node": ">=14"

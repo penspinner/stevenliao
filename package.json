@@ -18,14 +18,17 @@
     "eslint-config-custom": "workspace:*",
     "eslint-config-custom-next": "workspace:*",
     "eslint-config-custom-remix": "workspace:*",
-    "eslint-config-turbo": "^0.0.9",
-    "prettier": "^2.8.4",
-    "prettier-plugin-tailwindcss": "0.2.4",
+    "eslint-config-turbo": "^0.0.10",
+    "prettier": "^2.8.6",
+    "prettier-plugin-tailwindcss": "0.2.5",
     "tsconfig": "workspace:*",
-    "turbo": "^1.8.3"
+    "turbo": "^1.8.5"
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "packageManager": "pnpm@7.27.1"
+  "packageManager": "pnpm@7.27.1",
+  "dependencies": {
+    "playing-cards": "^1.1.0"
+  }
 }
