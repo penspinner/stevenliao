@@ -139,7 +139,7 @@ const Document = ({
 const useColorSchemeFetcher = () => {
   const loaderData = useLoaderData<typeof loader>()
   const colorSchemeFetcher = useFetcher()
-  const formData = colorSchemeFetcher.submission?.formData
+  const formData = colorSchemeFetcher.formData
   const optimisticColorScheme = formData?.has('colorScheme')
     ? (formData.get('colorScheme') as ColorScheme)
     : null

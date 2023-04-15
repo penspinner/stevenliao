@@ -1,9 +1,11 @@
 import type { V2_MetaFunction } from '@vercel/remix'
 import { About, aboutDescription, aboutTitle } from 'personal-site'
 
+import type { loader as rootLoader } from '~/root'
+
 export const config = { runtime: 'edge' }
 
-export const meta: V2_MetaFunction = ({ matches }) => {
+export const meta: V2_MetaFunction<unknown, { root: typeof rootLoader }> = ({ matches }) => {
   return [
     ...matches[0].meta,
     { title: aboutTitle },

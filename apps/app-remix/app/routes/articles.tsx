@@ -4,11 +4,12 @@ import { json } from '@vercel/remix'
 import type { Article } from 'personal-site'
 import { Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
 
+import type { loader as rootLoader } from '~/root'
 import { createCacheControlHeaders } from '~/utils'
 
 export const config = { runtime: 'edge' }
 
-export const meta: V2_MetaFunction = ({ matches }) => {
+export const meta: V2_MetaFunction<unknown, { root: typeof rootLoader }> = ({ matches }) => {
   return [
     ...matches[0].meta,
     { title: articlesTitle },
