@@ -1,12 +1,13 @@
 import { Cog8ToothIcon } from '@heroicons/react/24/outline'
 import { Slot } from '@radix-ui/react-slot'
 import clsx from 'clsx'
+import { motion } from 'framer-motion'
 import * as React from 'react'
 
 import { Container } from '~/components/container'
 import { InnerContainer, OuterContainer } from '~/components/container'
 import { Details } from '~/components/details'
-import { ColorScheme } from '~/types'
+import type { ColorScheme } from '~/types'
 
 export const Layout = ({
   children,
@@ -169,7 +170,7 @@ const NavItem = ({
       {linkRender({
         href,
         className: clsx(
-          'relative block px-3 py-2 transition outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-zinc-200',
+          'relative block px-3 py-2 transition outline-none rounded-full focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-zinc-200',
           isActive
             ? 'text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400',
@@ -178,7 +179,11 @@ const NavItem = ({
           <>
             {children}
             {isActive && (
-              <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+              <motion.span
+                className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"
+                layoutId="active-link"
+                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+              />
             )}
           </>
         ),
@@ -196,7 +201,7 @@ const DesktopNavigation = ({
 }) => {
   return (
     <nav className="pointer-events-auto hidden md:block">
-      <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+      <ul className="flex rounded-full bg-white/90 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
         <NavItem currentPathname={currentPathname} href="/about" linkRender={linkRender}>
           About
         </NavItem>
@@ -318,7 +323,7 @@ const ColorSchemeButton = ({
       disabled={colorScheme === props.value}
       name="colorScheme"
       className={clsx(
-        'flex w-full items-center gap-4 py-1 px-4 text-sm font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-teal-500',
+        'flex w-full items-center gap-4 px-4 py-1 text-sm font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-teal-500',
         colorScheme === props.value
           ? 'group-hover:stroke-teal-600" fill-teal-50 stroke-teal-500 text-teal-500 group-hover:fill-teal-50 dark:text-teal-400 '
           : 'fill-zinc-100 stroke-zinc-500 text-zinc-700 transition hover:bg-zinc-50 active:text-zinc-200 group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:active:text-zinc-200',
@@ -391,7 +396,7 @@ const Footer = ({
   return (
     <footer className="mt-32">
       <OuterContainer>
-        <div className="border-t border-zinc-100 pt-10 pb-16 dark:border-zinc-700/40">
+        <div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
           <InnerContainer>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
