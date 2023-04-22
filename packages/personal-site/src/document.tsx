@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import * as React from 'react'
 
-import { ColorScheme } from '~/types'
+import type { ColorScheme } from '~/types'
 
 export const Document = ({
   colorScheme,

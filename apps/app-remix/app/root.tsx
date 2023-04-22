@@ -145,7 +145,7 @@ const useColorSchemeFetcher = () => {
     : null
   const ColorSchemeForm = React.useCallback(
     (props: Omit<React.ComponentProps<typeof colorSchemeFetcher.Form>, 'action' | 'method'>) => (
-      <colorSchemeFetcher.Form {...props} action="/color-scheme" method="post" />
+      <colorSchemeFetcher.Form {...props} action="/color-scheme" method="POST" />
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [colorSchemeFetcher.Form],

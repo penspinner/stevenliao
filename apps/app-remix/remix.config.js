@@ -16,11 +16,11 @@ const packages = glob
  */
 module.exports = {
   future: {
-    unstable_postcss: true,
-    unstable_tailwind: true,
     v2_errorBoundary: true,
     v2_meta: true,
+    v2_normalizeFormMethod: true,
   },
+  postcss: true,
   routes: (defineRoutes) =>
     flatRoutes('routes', defineRoutes, { appDir: path.resolve(__dirname, 'app') }),
   // When running locally in development mode, we use the built in remix
@@ -28,5 +28,6 @@ module.exports = {
   // so we default back to the standard build output.
   server: process.env.NODE_ENV === 'development' ? undefined : './server.js',
   serverBuildPath: 'api/index.js',
+  tailwind: true,
   watchPaths: packages,
 }
