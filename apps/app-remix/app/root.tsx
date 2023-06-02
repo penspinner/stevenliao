@@ -13,7 +13,7 @@ import {
   useNavigation,
   useRouteError,
 } from '@remix-run/react'
-import type { LinksFunction, LoaderArgs, V2_MetaFunction } from '@vercel/remix'
+import type { LinksFunction, LoaderArgs } from '@vercel/remix'
 import { json } from '@vercel/remix'
 import NProgress from 'nprogress'
 import nProgressCSSHref from 'nprogress/nprogress.css'
@@ -36,10 +36,6 @@ export const links: LinksFunction = () => {
     { rel: 'stylesheet', href: tailwindCSSHref },
     { rel: 'stylesheet', href: nProgressCSSHref },
   ]
-}
-
-export const meta: V2_MetaFunction = () => {
-  return [{ charSet: 'utf-8' }, { name: 'viewport', content: 'width=device-width,initial-scale=1' }]
 }
 
 export const loader = async ({ request }: LoaderArgs) => {
@@ -120,6 +116,8 @@ const Document = ({
       colorScheme={colorScheme}
       head={
         <>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
           <Meta />
           <Links />
         </>

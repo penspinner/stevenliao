@@ -10,17 +10,12 @@ import {
   PaddedErrorBoundary,
 } from 'personal-site'
 
-import type { loader as rootLoader } from '~/root'
 import { createCacheControlHeaders } from '~/utils'
 
 export const config = { runtime: 'edge' }
 
-export const meta: V2_MetaFunction<typeof loader, { root: typeof rootLoader }> = ({ matches }) => {
-  return [
-    ...matches[0].meta,
-    { title: indexTitle },
-    { name: 'description', content: indexDescription },
-  ]
+export const meta: V2_MetaFunction = () => {
+  return [{ title: indexTitle }, { name: 'description', content: indexDescription }]
 }
 
 export const loader = async () => {
