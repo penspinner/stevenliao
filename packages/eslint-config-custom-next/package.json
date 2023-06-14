@@ -5,8 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "eslint-config-custom": "workspace:*",
-    "eslint-config-next": "^13.4.4",
-    "next": "13.4.4",
+    "eslint-config-next": "^13.4.7",
+    "next": "13.4.7",
     "prettier": "^2.8.8"
   },
   "publishConfig": {
