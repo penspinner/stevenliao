@@ -9,14 +9,16 @@ const packages = glob
     ignore: ['**/node_modules/**'],
     absolute: true,
   })
-  .map((pkg) => path.dirname(pkg))
+  .map((pkg) => path.dirname(pkg) + '/**/*.js')
 
 /**
  * @type {import('@remix-run/dev').AppConfig}
  */
 module.exports = {
   future: {
+    v2_dev: true,
     v2_errorBoundary: true,
+    v2_headers: true,
     v2_meta: true,
     v2_normalizeFormMethod: true,
   },
