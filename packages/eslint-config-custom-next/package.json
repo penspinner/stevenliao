@@ -5,9 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "eslint-config-custom": "workspace:*",
-    "eslint-config-next": "^13.4.7",
-    "next": "13.4.7",
-    "prettier": "^2.8.8"
+    "eslint-config-next": "^13.4.12",
+    "next": "13.4.12",
+    "prettier": "^3.0.0"
   },
   "publishConfig": {
     "access": "public"

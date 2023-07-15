@@ -18,11 +18,11 @@
     "eslint-config-custom": "workspace:*",
     "eslint-config-custom-next": "workspace:*",
     "eslint-config-custom-remix": "workspace:*",
-    "eslint-config-turbo": "^1.10.6",
-    "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "0.3.0",
+    "eslint-config-turbo": "^1.10.11",
+    "prettier": "^3.0.0",
+    "prettier-plugin-tailwindcss": "0.4.1",
     "tsconfig": "workspace:*",
-    "turbo": "^1.10.6"
+    "turbo": "^1.10.11"
   },
   "engines": {
     "node": ">=14.0.0"
