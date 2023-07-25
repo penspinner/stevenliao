@@ -12,8 +12,6 @@ import {
 
 import { createCacheControlHeaders } from '~/utils'
 
-export const config = { runtime: 'edge' }
-
 export const meta: V2_MetaFunction = () => {
   return [{ title: indexTitle }, { name: 'description', content: indexDescription }]
 }

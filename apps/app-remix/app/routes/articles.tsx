@@ -6,8 +6,6 @@ import { Articles, articlesDescription, articlesTitle, getArticles } from 'perso
 
 import { createCacheControlHeaders } from '~/utils'
 
-export const config = { runtime: 'edge' }
-
 export const meta: V2_MetaFunction = () => {
   return [{ title: articlesTitle }, { name: 'description', content: articlesDescription }]
 }

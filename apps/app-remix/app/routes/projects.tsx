@@ -1,8 +1,6 @@
 import type { V2_MetaFunction } from '@vercel/remix'
 import { Projects, projectsDescription, projectsTitle } from 'personal-site'
 
-export const config = { runtime: 'edge' }
-
 export const meta: V2_MetaFunction = () => {
   return [{ title: projectsTitle }, { name: 'description', content: projectsDescription }]
 }
