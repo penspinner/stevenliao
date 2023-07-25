@@ -5,6 +5,8 @@ import { RootLayoutComponent } from './layout-component'
 import 'personal-site/tailwind.css'
 import 'focus-visible'
 
+export const runtime = 'edge'
+
 export const metadata = {
   viewport: 'width=device-width, initial-scale=1',
 }
