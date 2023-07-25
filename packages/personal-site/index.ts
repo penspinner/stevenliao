@@ -5,7 +5,6 @@ export { ThankYou, thankYouDescription, thankYouTitle } from './src/pages/thank-
 export { Articles, articlesDescription, articlesTitle } from './src/pages/articles'
 export { Uses, usesDescription, usesTitle } from './src/pages/uses'
 export { Document } from './src/document'
-export { Layout } from './src/layout'
 export {
   PaddedErrorBoundary,
   RootErrorBoundary,

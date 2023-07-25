@@ -12,11 +12,12 @@
   ],
   "exports": {
     ".": "./dist/index.js",
+    "./client": "./dist/index.client.js",
     "./tailwind.config": "./tailwind.config.js",
     "./tailwind.css": "./src/tailwind.css"
   },
   "scripts": {
-    "build": "tsup index.ts --format cjs,esm --dts",
+    "build": "tsup --entry index.ts --entry index.client.ts --format cjs,esm --dts",
     "check:eslint": "eslint ./src/**/*.{tsx,ts}",
     "check:format": "prettier './**/*.{tsx,ts,jsx,js}' -c",
     "check:typescript": "tsc --noEmit",
