@@ -5,15 +5,20 @@ import type { ColorScheme } from '~/types'
 
 export const Document = ({
   colorScheme,
+  className,
   head,
   body,
 }: React.PropsWithChildren<{
   colorScheme: ColorScheme
+  className?: string
   head?: React.ReactElement
   body: React.ReactElement
 }>) => {
   return (
-    <html className={clsx('h-full antialiased', colorScheme === 'dark' && 'dark')} lang="en">
+    <html
+      className={clsx('h-full antialiased', colorScheme === 'dark' && 'dark', className)}
+      lang="en"
+    >
       <head>
         <ColorSchemeScript colorScheme={colorScheme} />
         {head}

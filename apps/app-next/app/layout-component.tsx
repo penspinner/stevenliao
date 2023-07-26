@@ -1,5 +1,6 @@
 'use client'
 
+import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -7,6 +8,12 @@ import type { ColorScheme } from 'personal-site'
 import { Document } from 'personal-site'
 import { Layout } from 'personal-site/client'
 import * as React from 'react'
+
+const inter = Inter({
+  display: 'swap',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+})
 
 export const RootLayoutComponent = ({
   children,
@@ -16,6 +23,7 @@ export const RootLayoutComponent = ({
   return (
     <Document
       colorScheme={colorScheme}
+      className={inter.className}
       body={
         <Layout
           avatarImg={
