@@ -22,18 +22,23 @@ import type { ColorScheme } from 'personal-site'
 import { Layout } from 'personal-site/client'
 import * as React from 'react'
 
+import fontCSSHref from '~/css/font.css'
 import tailwindCSSHref from '~/css/tailwind.css'
 import { parseColorScheme } from '~/modules/color-scheme'
 
 export const links: LinksFunction = () => {
   return [
     { rel: 'icon', href: '/favicon.ico', type: 'image/png' },
-    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com', crossOrigin: 'anonymous' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
     {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+      rel: 'preload',
+      href: 'https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2',
+      as: 'font',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
     },
+    { rel: 'stylesheet', href: fontCSSHref },
     { rel: 'stylesheet', href: tailwindCSSHref },
     { rel: 'stylesheet', href: nProgressCSSHref },
   ]
