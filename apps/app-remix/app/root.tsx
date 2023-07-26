@@ -25,8 +25,6 @@ import * as React from 'react'
 import tailwindCSSHref from '~/css/tailwind.css'
 import { parseColorScheme } from '~/modules/color-scheme'
 
-export const config = { runtime: 'edge' }
-
 export const links: LinksFunction = () => {
   return [
     { rel: 'icon', href: '/favicon.ico', type: 'image/png' },
