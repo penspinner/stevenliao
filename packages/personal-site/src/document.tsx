@@ -15,10 +15,7 @@ export const Document = ({
   body: React.ReactElement
 }>) => {
   return (
-    <html
-      className={clsx('h-full antialiased', colorScheme === 'dark' && 'dark', className)}
-      lang="en"
-    >
+    <html className={clsx('h-full antialiased', className)} lang="en" suppressHydrationWarning>
       <head>
         <ColorSchemeScript colorScheme={colorScheme} />
         {head}
@@ -29,18 +26,6 @@ export const Document = ({
 }
 
 const ColorSchemeScript = ({ colorScheme }: { colorScheme: ColorScheme }) => {
-  const script = React.useMemo(
-    () => `
-      const colorScheme = ${JSON.stringify(colorScheme)};
-      if (colorScheme === "system") {
-        const media = window.matchMedia("(prefers-color-scheme: dark)")
-        if (media.matches) document.documentElement.classList.add("dark");
-      }
-    `,
-    [], // eslint-disable-line
-    // we don't want this script to ever change
-  )
-
   if (typeof document !== 'undefined') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useLayoutEffect(() => {
@@ -70,5 +55,17 @@ const ColorSchemeScript = ({ colorScheme }: { colorScheme: ColorScheme }) => {
     }, [colorScheme])
   }
 
-  return <script dangerouslySetInnerHTML={{ __html: script }} />
+  return (
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+  const colorScheme = ${JSON.stringify(colorScheme)};
+  if (colorScheme === "system") {
+    const media = window.matchMedia("(prefers-color-scheme: dark)")
+    if (media.matches) document.documentElement.classList.add("dark");
+  }
+`,
+      }}
+    />
+  )
 }
