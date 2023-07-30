@@ -15,16 +15,16 @@
   "devDependencies": {
     "@react-types/button": "^3.7.3",
     "@react-types/datepicker": "^3.4.0",
-    "@types/react": "^18.2.16",
+    "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
-    "eslint": "^8.45.0",
+    "eslint": "^8.46.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.15",
+    "@headlessui/react": "^1.7.16",
     "@heroicons/react": "^2.0.18",
     "@internationalized/date": "^3.3.0",
     "@radix-ui/react-dialog": "^1.0.4",
