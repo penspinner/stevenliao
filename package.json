@@ -11,6 +11,7 @@
     "dev:next": "turbo run dev watch --filter app-next --filter personal-site --parallel",
     "dev:remix": "turbo run dev watch --filter app-remix --filter personal-site --parallel",
     "check:eslint": "turbo run check:eslint",
+    "check:prettier": "prettier './**/*.{tsx,ts,jsx,js}' -c",
     "check:typescript": "turbo run check:typescript",
     "format": "prettier '**/*.{ts,tsx}' -w"
   },

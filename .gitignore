@@ -33,5 +33,5 @@ yarn-error.log*
 .turbo
 
 dist
-transformed-css
 tsconfig.tsbuildinfo
+apps/app-remix/api
