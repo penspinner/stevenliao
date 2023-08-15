@@ -20,8 +20,8 @@
     "eslint-config-custom-next": "workspace:*",
     "eslint-config-custom-remix": "workspace:*",
     "eslint-config-turbo": "^1.10.12",
-    "prettier": "^3.0.0",
-    "prettier-plugin-tailwindcss": "0.4.1",
+    "prettier": "^3.0.1",
+    "prettier-plugin-tailwindcss": "0.5.3",
     "tsconfig": "workspace:*",
     "turbo": "^1.10.12"
   },
