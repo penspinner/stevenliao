@@ -1,0 +1,49 @@
+{
+  "name": "app-react-router",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "imports": {
+    "#css/*": "./app/css/*",
+    "#modules/*": "./app/modules/*/index.tsx",
+    "#utils": "./app/utils/index.ts"
+  },
+  "scripts": {
+    "build": "react-router build",
+    "check:ts": "pnpm typegen && tsc --noEmit",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typegen": "react-router typegen"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@react-aria/ssr": "^3.10.0",
+    "@react-router/fs-routes": "^7.14.2",
+    "@react-router/node": "^7.14.2",
+    "@react-router/serve": "^7.14.2",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.2.4",
+    "@vercel/react-router": "^1.2.6",
+    "clsx": "^2.1.1",
+    "isbot": "^5.1.39",
+    "nprogress": "^0.2.0",
+    "personal-site": "workspace:*",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router": "^7.14.2",
+    "tailwindcss": "^4.2.4"
+  },
+  "devDependencies": {
+    "@react-router/dev": "^7.14.2",
+    "@types/nprogress": "^0.2.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/set-cookie-parser": "^2.4.10",
+    "autoprefixer": "^10.4.21",
+    "happy-dom": "^20.9.0",
+    "tsconfig": "workspace:*",
+    "types": "workspace:*",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.10"
+  }
+}

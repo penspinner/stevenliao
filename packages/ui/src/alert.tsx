@@ -24,8 +24,8 @@ export const Alert: React.FC<AlertProps> = ({ children, color, Icon, ...props })
                 color === 'yellow'
                   ? 'text-yellow-400'
                   : color === 'gray'
-                  ? 'text-gray-400'
-                  : 'text-red-400',
+                    ? 'text-gray-400'
+                    : 'text-red-400',
               )}
             />
           </div>
@@ -36,8 +36,8 @@ export const Alert: React.FC<AlertProps> = ({ children, color, Icon, ...props })
             color === 'yellow'
               ? 'text-yellow-800'
               : color === 'gray'
-              ? 'text-gray-800'
-              : 'text-red-800',
+                ? 'text-gray-800'
+                : 'text-red-800',
           )}
         >
           {children}

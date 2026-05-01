@@ -8,28 +8,23 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev:next": "turbo run dev watch --filter app-next --filter personal-site --parallel",
-    "dev:remix": "turbo run dev watch --filter app-remix --filter personal-site --parallel",
-    "check:eslint": "turbo run check:eslint",
-    "check:prettier": "prettier './**/*.{tsx,ts,jsx,js}' -c",
-    "check:typescript": "turbo run check:typescript",
-    "format": "prettier '**/*.{ts,tsx}' -w"
+    "dev:next": "turbo run dev watch --filter app-next --filter personal-site",
+    "dev:react-router": "turbo run dev watch --filter app-react-router --filter personal-site",
+    "check:lint": "oxlint",
+    "check:fmt": "oxfmt --check .",
+    "check:ts": "turbo run check:ts",
+    "fmt": "oxfmt .",
+    "typegen": "turbo run typegen"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
-    "eslint-config-custom-next": "workspace:*",
-    "eslint-config-custom-remix": "workspace:*",
-    "eslint-config-turbo": "^1.10.12",
-    "prettier": "^3.0.1",
-    "prettier-plugin-tailwindcss": "0.5.3",
+    "oxfmt": "^0.47.0",
+    "oxlint": "^1.62.0",
+    "oxlint-tsgolint": "^0.22.1",
     "tsconfig": "workspace:*",
-    "turbo": "^1.10.12"
+    "turbo": "^2.9.7"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=24"
   },
-  "packageManager": "pnpm@7.27.1",
-  "dependencies": {
-    "playing-cards": "^1.1.0"
-  }
+  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8"
 }

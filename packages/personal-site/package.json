@@ -2,48 +2,48 @@
   "name": "personal-site",
   "version": "0.0.0",
   "private": true,
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "files": [
     "./dist",
-    "./tailwind.config.js",
     "./src/tailwind.css"
   ],
+  "type": "module",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
   "exports": {
-    ".": "./dist/index.js",
-    "./client": "./dist/index.client.js",
-    "./tailwind.config": "./tailwind.config.js",
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./client": {
+      "types": "./dist/client.d.mts",
+      "import": "./dist/client.mjs"
+    },
     "./tailwind.css": "./src/tailwind.css"
   },
   "scripts": {
-    "build": "tsup --entry index.ts --entry index.client.ts --format cjs,esm --dts",
-    "check:eslint": "eslint ./src/**/*.{tsx,ts}",
-    "check:format": "prettier './**/*.{tsx,ts,jsx,js}' -c",
-    "check:typescript": "tsc --noEmit",
-    "watch": "git clean -fx ./dist && pnpm build --watch"
+    "build": "tsdown index.ts client.ts --format esm --dts",
+    "check:ts": "tsc --noEmit",
+    "watch": "pnpm run build --watch"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.18",
-    "@radix-ui/react-slot": "^1.0.2",
-    "clsx": "^2.0.0",
-    "framer-motion": "^10.15.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@heroicons/react": "^2.2.0",
+    "@radix-ui/react-slot": "^1.2.4",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "^20.5.0",
-    "@types/react": "^18.2.20",
-    "@types/react-dom": "^18.2.7",
-    "eslint-config-custom": "workspace:*",
-    "postcss-cli": "10.1.0",
-    "postcss-focus-visible": "^9.0.0",
-    "prettier": "^3.0.1",
-    "prettier-plugin-tailwindcss": "0.5.3",
-    "tailwindcss": "^3.3.3",
+    "@tailwindcss/postcss": "^4.2.4",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "postcss-cli": "^11.0.1",
+    "postcss-focus-visible": "^11.0.0",
+    "tailwindcss": "^4.2.4",
     "tsconfig": "workspace:*",
-    "tsup": "^7.2.0",
-    "typescript": "^5.1.6"
+    "tsdown": "^0.21.10",
+    "typescript": "^6.0.3"
   }
 }

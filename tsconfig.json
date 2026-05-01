@@ -3,7 +3,7 @@
   "include": ["**/*.ts", "**/*.tsx"],
   "references": [
     {
-      "path": "apps/app-remix"
+      "path": "apps/app-react-router"
     },
     {
       "path": "apps/app-next"

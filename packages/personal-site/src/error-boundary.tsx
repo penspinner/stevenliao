@@ -1,6 +1,6 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 
-import { Container } from '~/components/container'
+import { Container } from './components/container'
 
 type ErrorBoundaryProps = {
   thrown: unknown
@@ -16,13 +16,13 @@ export const SharedErrorBoundary = ({ thrown }: ErrorBoundaryProps) => {
           {thrown.message && (
             <p className="mt-4 max-w-lg text-red-600 dark:text-red-300">{thrown.message}</p>
           )}
-          <details className="mt-2 max-w-full justify-between break-words text-center text-red-600 dark:text-red-300">
+          <details className="mt-2 max-w-full justify-between text-center wrap-break-word text-red-600 dark:text-red-300">
             <summary>Call stack</summary>
             <p>{thrown.stack}</p>
           </details>
         </>
       ) : (
-        <p className="mt-4 max-w-lg text-red-600 dark:text-red-300">{`${thrown}`}</p>
+        <p className="mt-4 max-w-lg text-red-600 dark:text-red-300">{String(thrown)}</p>
       )}
     </div>
   )

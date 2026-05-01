@@ -4,10 +4,10 @@ import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import * as React from 'react'
 
-import { Container } from '~/components/container'
-import { InnerContainer, OuterContainer } from '~/components/container'
-import { Details } from '~/components/details'
-import type { ColorScheme } from '~/types'
+import { Container } from './components/container'
+import { InnerContainer, OuterContainer } from './components/container'
+import { Details } from './components/details'
+import type { ColorScheme } from './types'
 
 export const Layout = ({
   children,
@@ -47,7 +47,7 @@ const Header = ({
   return (
     <header className="pointer-events-none relative z-50 flex flex-col">
       <div className="top-0 z-10 h-16 pt-6">
-        <Container className=" w-full">
+        <Container className="w-full">
           <div className="relative flex gap-4">
             <div className="flex flex-1">
               <AvatarContainer>
@@ -109,7 +109,7 @@ const MobileNavigation = ({
 }) => {
   return (
     <Details className="pointer-events-auto relative md:hidden">
-      <summary className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
+      <summary className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
         Menu
         <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
       </summary>
@@ -180,7 +180,7 @@ const NavItem = ({
             {children}
             {isActive && (
               <motion.span
-                className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"
+                className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"
                 layoutId="active-link"
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
               />
@@ -201,7 +201,7 @@ const DesktopNavigation = ({
 }) => {
   return (
     <nav className="pointer-events-auto hidden md:block">
-      <ul className="flex rounded-full bg-white/90 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+      <ul className="flex rounded-full bg-white/90 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
         <NavItem currentPathname={currentPathname} href="/about" linkRender={linkRender}>
           About
         </NavItem>
@@ -271,12 +271,12 @@ const ColorSchemeToggle = ({ colorScheme }: { colorScheme: ColorScheme }) => {
     <Details className="relative cursor-pointer">
       <summary
         aria-label="Color scheme"
-        className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 outline-none ring-1 ring-zinc-900/5 backdrop-blur transition focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 dark:focus-visible:ring-zinc-200 dark:focus-visible:ring-offset-white/10"
+        className="group rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur transition outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 dark:focus-visible:ring-zinc-200 dark:focus-visible:ring-offset-white/10"
       >
         {colorScheme === 'dark' ? (
-          <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500" />
+          <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition not-dark:fill-teal-400/10 not-dark:stroke-teal-500 dark:block dark:group-hover:stroke-zinc-400" />
         ) : colorScheme === 'light' ? (
-          <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
+          <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden dark:fill-teal-50 dark:stroke-teal-500 dark:group-hover:fill-teal-50 dark:group-hover:stroke-teal-600" />
         ) : (
           <Cog8ToothIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 text-zinc-700 dark:text-zinc-200" />
         )}
@@ -302,7 +302,7 @@ const ColorSchemeToggle = ({ colorScheme }: { colorScheme: ColorScheme }) => {
 const DetailsPopup = ({ children }: React.PropsWithChildren) => {
   return (
     <div className="absolute right-0 z-20 md:left-0">
-      <div className="relative top-1 w-40 rounded-lg border border-zinc-100 bg-white py-2 shadow-lg dark:border-zinc-400 dark:bg-zinc-800 ">
+      <div className="relative top-1 w-40 rounded-lg border border-zinc-100 bg-white py-2 shadow-lg dark:border-zinc-400 dark:bg-zinc-800">
         {children}
       </div>
     </div>
@@ -381,7 +381,7 @@ const MoonIcon = (props: React.SVGProps<SVGSVGElement>) => {
 const Link = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
     <Slot
-      className="outline-none transition hover:text-teal-500 focus-visible:ring-2 focus-visible:ring-zinc-900 dark:hover:text-teal-400 dark:focus-visible:ring-zinc-200"
+      className="transition outline-none hover:text-teal-500 focus-visible:ring-2 focus-visible:ring-zinc-900 dark:hover:text-teal-400 dark:focus-visible:ring-zinc-200"
       {...props}
     />
   )
@@ -396,7 +396,7 @@ const Footer = ({
   return (
     <footer className="mt-32">
       <OuterContainer>
-        <div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
+        <div className="border-t border-zinc-100 pt-10 pb-16 dark:border-zinc-700/40">
           <InnerContainer>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">

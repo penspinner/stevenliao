@@ -1,21 +1,23 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "build/**", "api/**", "public/build/**"]
+      "outputs": ["dist/**", ".next/**", "build/**", "public/build/**"]
     },
-    "app-remix#build": {
-      "dependsOn": ["^build"],
-      "outputs": ["api/index.js", "api/build/**", "public/build/**"]
+    "check:ts": {
+      "dependsOn": ["^build"]
     },
-    "check:eslint": {},
-    "check:typescript": {},
+    "typegen": {
+      "outputs": [".react-router/types/**"]
+    },
     "dev": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     },
     "watch": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     }
   }
 }

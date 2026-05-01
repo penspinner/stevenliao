@@ -2,56 +2,54 @@ name: Checks
 on: [push]
 
 jobs:
-  check-prettier:
-    name: Check Prettier
+  check-format:
+    name: Check format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: 18
+          node-version: 24
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Prettier check
-        run: pnpm check:prettier
-  check-eslint:
-    name: Check ESLint
+      - name: Format check
+        run: pnpm check:fmt
+  check-lint:
+    name: Check lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: 18
+          node-version: 24
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: ESLint check
-        run: pnpm check:eslint
+      - name: Typegen
+        run: pnpm typegen
+      - name: Build apps and packages
+        run: pnpm build
+      - name: Lint check
+        run: pnpm check:lint
   check-typescript:
     name: Check TypeScript
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: 18
+          node-version: 24
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
       - name: Build apps and packages
         run: pnpm build
       - name: TypeScript check
-        run: pnpm check:typescript
+        run: pnpm check:ts

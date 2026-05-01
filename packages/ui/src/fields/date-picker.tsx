@@ -51,7 +51,6 @@ import type { AriaButtonProps } from '@react-types/button'
 import type {
   AriaDatePickerProps,
   AriaDateRangePickerProps,
-  DatePickerBase,
   DateValue,
 } from '@react-types/datepicker'
 import clsx from 'clsx'
@@ -74,7 +73,7 @@ export const DateRangePicker = (props: DateRangePickerProps) => {
     calendarProps,
   } = useDateRangePicker(props, state, ref)
   return (
-    <Popover.Root open={state.isOpen} onOpenChange={state.setOpen}>
+    <Popover.Root open={state.isOpen} onOpenChange={(open) => state.setOpen(open)}>
       <div className="relative inline-flex flex-col space-y-2 text-left">
         {props.label && (
           <div {...labelProps} className="text-sm font-medium text-gray-700">
@@ -94,8 +93,8 @@ export const DateRangePicker = (props: DateRangePickerProps) => {
           </DateFieldContainer>
           <CalendarPopoverTrigger {...buttonProps} />
         </div>
-        <Popover.Portal className="z-10">
-          <Popover.Content {...dialogProps} className="rounded bg-white p-8 shadow-lg">
+        <Popover.Portal>
+          <Popover.Content {...dialogProps} className="z-10 rounded bg-white p-8 shadow-lg">
             <Popover.Arrow className="fill-white" />
             <RangeCalendar {...calendarProps} />
           </Popover.Content>
@@ -132,7 +131,7 @@ export const DatePicker = (props: DatePickerProps) => {
     useDatePicker(props, state, ref)
   const { onPress, ...calendarButtonProps } = buttonProps
   return (
-    <Popover.Root open={state.isOpen} onOpenChange={state.setOpen}>
+    <Popover.Root open={state.isOpen} onOpenChange={(open) => state.setOpen(open)}>
       <div className="relative inline-flex flex-col text-left">
         {props.label && (
           <div {...labelProps} className="text-sm text-gray-800">
@@ -223,7 +222,7 @@ const DateField = <T extends DateValue>(props: AriaDateFieldProps<T>) => {
   )
 }
 
-type DateFieldSegmentProps = DatePickerBase<DateValue> & {
+type DateFieldSegmentProps = {
   segment: DateSegment
   state: DateFieldState
 }
@@ -247,7 +246,7 @@ const DateFieldSegment = ({ segment, state }: DateFieldSegmentProps) => {
       {/* Always reserve space for the placeholder, to prevent layout shift when editing. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none block w-full text-center italic text-gray-500 group-focus:text-white"
+        className="pointer-events-none block w-full text-center text-gray-500 italic group-focus:text-white"
         style={{
           visibility: segment.isPlaceholder ? undefined : 'hidden',
           height: segment.isPlaceholder ? undefined : 0,
@@ -286,7 +285,6 @@ const Calendar = (props: CalendarProps<DateValue>) => {
 
 const RangeCalendar = <T extends DateValue>(props: RangeCalendarProps<T>) => {
   const { locale } = useLocale()
-  // @ts-expect-error TODO
   const state = useRangeCalendarState({
     ...props,
     locale,

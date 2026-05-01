@@ -6,6 +6,7 @@
     "base.json",
     "nextjs.json",
     "react-library.json",
-    "remix.json"
-  ]
+    "react-router.json"
+  ],
+  "type": "module"
 }

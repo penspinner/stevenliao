@@ -12,6 +12,7 @@ coverage
 .next/
 out/
 build
+next-env.d.ts
 
 # misc
 .DS_Store
@@ -34,4 +35,6 @@ yarn-error.log*
 
 dist
 tsconfig.tsbuildinfo
-apps/app-remix/api
+.react-router
+.vercel
+.vite

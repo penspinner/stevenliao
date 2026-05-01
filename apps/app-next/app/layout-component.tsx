@@ -43,13 +43,8 @@ export const RootLayoutComponent = ({
               method="POST"
               onSubmit={async (e) => {
                 e.preventDefault()
-                await fetch(
-                  (e.target as React.FormHTMLAttributes<HTMLFormElement>).action as string,
-                  {
-                    method: (e.target as React.FormHTMLAttributes<HTMLFormElement>)
-                      .method as string,
-                  },
-                )
+                const form = e.currentTarget
+                await fetch(form.action, { method: form.method })
               }}
             >
               {children}

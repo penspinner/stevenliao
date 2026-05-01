@@ -1,9 +1,7 @@
 {
   "name": "types",
   "version": "0.0.0",
-  "main": "./index.ts",
   "license": "MIT",
-  "scripts": {
-    "lint": "eslint *.ts*"
-  }
+  "type": "module",
+  "main": "./index.ts"
 }

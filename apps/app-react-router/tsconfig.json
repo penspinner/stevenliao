@@ -1,0 +1,9 @@
+{
+  "extends": "tsconfig/react-router.json",
+  "include": ["**/*.ts", "**/*.tsx", ".react-router/types/**/*"],
+  "compilerOptions": {
+    "composite": true,
+    "rootDirs": [".", "./.react-router/types"],
+    "types": ["@react-router/node", "vite/client"]
+  }
+}

@@ -2,11 +2,13 @@
 const nextConfig = {
   pageExtensions: ['tsx', 'mdx'],
   experimental: {
-    appDir: true,
     scrollRestoration: true,
   },
   images: {
-    domains: ['stevenliao.vercel.app', 'adventofcode.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'stevenliao.vercel.app' },
+      { protocol: 'https', hostname: 'adventofcode.com' },
+    ],
   },
 }
 

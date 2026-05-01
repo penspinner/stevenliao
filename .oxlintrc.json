@@ -1,0 +1,88 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "react", "unicorn", "import", "jsx-a11y", "nextjs"],
+  "options": {
+    "typeAware": true,
+    "typeCheck": true,
+    "reportUnusedDisableDirectives": "error"
+  },
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "rules": {
+    "import/no-default-export": "error",
+    "unicorn/filename-case": ["error", { "case": "kebabCase" }],
+    "unicorn/no-new-array": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "typescript/consistent-type-imports": "error",
+    "typescript/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "no-unused-expressions": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "apps/app-next/app/**/*.{ts,tsx}",
+        "apps/app-next/next.config.{js,mjs}",
+        "apps/app-next/postcss.config.mjs"
+      ],
+      "rules": {
+        "import/no-default-export": "off",
+        "unicorn/filename-case": ["error", { "cases": { "camelCase": true, "kebabCase": true } }]
+      }
+    },
+    {
+      "files": [
+        "apps/app-react-router/app/routes/**/_route.tsx",
+        "apps/app-react-router/app/routes/**/_index.tsx",
+        "apps/app-react-router/app/routes/*.tsx",
+        "apps/app-react-router/app/routes/*.ts",
+        "apps/app-react-router/app/root.tsx",
+        "apps/app-react-router/app/routes.ts",
+        "apps/app-react-router/app/entry.client.tsx",
+        "apps/app-react-router/app/entry.server.tsx",
+        "apps/app-react-router/react-router.config.ts",
+        "apps/app-react-router/vite.config.ts"
+      ],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    },
+    {
+      "files": ["apps/app-react-router/app/routes/**/*"],
+      "rules": {
+        "unicorn/filename-case": ["error", { "cases": { "camelCase": true, "kebabCase": true } }]
+      }
+    },
+    {
+      "files": ["apps/app-react-router/**/*", "packages/personal-site/**/*", "packages/ui/**/*"],
+      "rules": {
+        "nextjs/no-img-element": "off",
+        "nextjs/no-html-link-for-pages": "off",
+        "nextjs/no-head-element": "off"
+      }
+    },
+    {
+      "files": ["**/*.test.*"],
+      "rules": {
+        "typescript/no-non-null-assertion": "off"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "**/dist/**",
+    "**/build/**",
+    "**/.next/**",
+    "**/api/**",
+    "**/public/build/**",
+    "**/.cache/**",
+    "**/.turbo/**",
+    "**/.react-router/**",
+    "**/node_modules/**"
+  ]
+}

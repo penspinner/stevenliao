@@ -2,17 +2,16 @@ import { cookies } from 'next/headers'
 import * as React from 'react'
 
 import { RootLayoutComponent } from './layout-component'
-import 'personal-site/tailwind.css'
+import './tailwind.css'
 import 'focus-visible'
 
-export const runtime = 'edge'
-
-export const metadata = {
-  viewport: 'width=device-width, initial-scale=1',
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
-const RootLayout = ({ children }: React.PropsWithChildren) => {
-  const colorScheme = cookies().get('color-scheme')?.value ?? 'system'
+const RootLayout = async ({ children }: React.PropsWithChildren) => {
+  const colorScheme = (await cookies()).get('color-scheme')?.value ?? 'system'
   return <RootLayoutComponent colorScheme={colorScheme}>{children}</RootLayoutComponent>
 }
 

@@ -25,7 +25,7 @@ export const InputWithButtonForm = ({
           {...props}
         />
       </div>
-      <button className="relative -ml-px inline-flex items-center rounded-r border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500">
+      <button className="relative -ml-px inline-flex items-center rounded-r border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:outline-none">
         <span>{buttonLabel}</span>
       </button>
     </form>

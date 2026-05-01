@@ -148,7 +148,7 @@ export const Table = <T extends object>({ className, useTableProps, ...props }: 
             >
               {[...headerRow.childNodes].map((column) => (
                 <TableColumnHeader
-                  className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-700"
+                  className="px-4 py-4 text-left text-xs font-semibold tracking-wider text-gray-700 uppercase"
                   columnHeaderProps={{ node: column }}
                   key={column.key}
                   state={tableState}

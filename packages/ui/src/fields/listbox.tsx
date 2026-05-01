@@ -25,12 +25,12 @@ const FieldListbox = <Multiple extends boolean, TType extends Record<string, unk
   ...props
 }: FieldListboxProps<Multiple, TType>) => {
   return (
-    <Listbox {...props}>
+    <Listbox {...(props as React.ComponentProps<typeof Listbox>)}>
       {({ open }) => (
         <div className="space-y-2">
           <Listbox.Label className="block text-sm font-medium text-gray-700">{label}</Listbox.Label>
           <div className="relative">
-            <Listbox.Button className="relative h-9 w-full cursor-default rounded border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm">
+            <Listbox.Button className="relative h-9 w-full cursor-default rounded border border-gray-300 bg-white py-2 pr-10 pl-3 text-left shadow-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:outline-none sm:text-sm">
               <span className="block truncate">{valueDisplay}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -43,7 +43,7 @@ const FieldListbox = <Multiple extends boolean, TType extends Record<string, unk
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Listbox.Options className="ring-opacity-5 absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-1 text-base shadow-lg ring-1 ring-black focus:outline-none sm:text-sm">
                 {options.map((option) => (
                   <Listbox.Option
                     key={getOptionKey(option)}

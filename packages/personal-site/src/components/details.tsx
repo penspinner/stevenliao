@@ -35,7 +35,6 @@ export const Details = React.forwardRef<
   }, [isOpen])
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <details
       ref={forwardedRef}
       open={open ?? isOpen}

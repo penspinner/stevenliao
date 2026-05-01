@@ -1,7 +1,7 @@
-import { Card } from '~/components/card'
-import type { SectionProps } from '~/components/section'
-import { Section } from '~/components/section'
-import { SimpleLayout } from '~/components/simple-layout'
+import { Card } from '../components/card'
+import type { SectionProps } from '../components/section'
+import { Section } from '../components/section'
+import { SimpleLayout } from '../components/simple-layout'
 
 export const usesTitle = 'Uses - Steven Liao'
 export const usesDescription = 'Software I use, gadgets I love, and other things I recommend.'

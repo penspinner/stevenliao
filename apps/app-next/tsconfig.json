@@ -3,9 +3,6 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "baseUrl": ".",
-    "emitDeclarationOnly": false,
-    "noEmit": true,
     "plugins": [
       {
         "name": "next"

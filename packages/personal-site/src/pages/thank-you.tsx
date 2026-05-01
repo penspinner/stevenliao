@@ -1,4 +1,4 @@
-import { SimpleLayout } from '~/components/simple-layout'
+import { SimpleLayout } from '../components/simple-layout'
 
 export const thankYouTitle = 'You’re subscribed - Steven Liao'
 export const thankYouDescription = 'Thanks for subscribing to my newsletter.'
