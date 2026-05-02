@@ -7,7 +7,7 @@ export default defineConfig({
     include: ['@heroicons/react', 'clsx', 'personal-site'],
   },
   plugins: [tailwindcss(), reactRouter()],
-  ssr: {
-    external: ['personal-site'],
-  },
+  // ssr: {
+  //   external: ['personal-site'],
+  // },
 })

@@ -1,5 +1,4 @@
-import NProgress from 'nprogress'
-import nProgressCSSHref from 'nprogress/nprogress.css?url'
+import ProgressBar from '@badrap/bar-of-progress'
 import { Document as Doc, RootErrorBoundary, RootNotFound } from 'personal-site'
 import type { ColorScheme } from 'personal-site'
 import { Layout as PageLayout } from 'personal-site/client'
@@ -38,7 +37,6 @@ export const links: Route.LinksFunction = () => {
     },
     { rel: 'stylesheet', href: fontCSSHref },
     { rel: 'stylesheet', href: tailwindCSSHref },
-    { rel: 'stylesheet', href: nProgressCSSHref },
   ]
 }
 
@@ -47,19 +45,18 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return { colorScheme }
 }
 
+const progress = new ProgressBar()
+
 const Root = () => {
   const navigation = useNavigation()
   const location = useLocation()
   const { colorScheme, ColorSchemeForm } = useColorSchemeFetcher()
 
   React.useEffect(() => {
-    NProgress.configure({ showSpinner: false, trickleSpeed: 200 })
-  }, [])
-  React.useEffect(() => {
     if (navigation.state === 'idle') {
-      NProgress.done()
+      progress.finish()
     } else {
-      NProgress.start()
+      progress.start()
     }
   }, [navigation.state])
 
