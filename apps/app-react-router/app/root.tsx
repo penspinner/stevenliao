@@ -18,10 +18,12 @@ import {
   useRouteError,
 } from 'react-router'
 
+import { parseColorScheme } from '#modules/color-scheme'
+
 import type { Route } from './+types/root'
+
 import fontCSSHref from '#css/font.css?url'
 import tailwindCSSHref from '#css/tailwind.css?url'
-import { parseColorScheme } from '#modules/color-scheme'
 
 export const links: Route.LinksFunction = () => {
   return [

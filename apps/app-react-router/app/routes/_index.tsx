@@ -8,8 +8,9 @@ import {
 } from 'personal-site'
 import { useLoaderData, useRouteError } from 'react-router'
 
-import type { Route } from './+types/_index'
 import { createCacheControlHeaders } from '#utils'
+
+import type { Route } from './+types/_index'
 
 export const meta: Route.MetaFunction = () => {
   return [{ title: indexTitle }, { name: 'description', content: indexDescription }]

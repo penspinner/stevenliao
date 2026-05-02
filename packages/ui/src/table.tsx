@@ -1,5 +1,7 @@
-import { useFocusRing } from 'react-aria/useFocusRing'
+import clsx from 'clsx'
+import * as React from 'react'
 import { mergeProps } from 'react-aria/mergeProps'
+import { useFocusRing } from 'react-aria/useFocusRing'
 import type { GridRowProps } from 'react-aria/useTable'
 import {
   useTable,
@@ -11,8 +13,6 @@ import {
 } from 'react-aria/useTable'
 import type { TableState, TableStateProps } from 'react-stately/useTableState'
 import { useTableState } from 'react-stately/useTableState'
-import clsx from 'clsx'
-import * as React from 'react'
 
 type TableRowGroupProps = React.HTMLAttributes<HTMLTableSectionElement> & {
   as: 'thead' | 'tbody' | 'tfoot'

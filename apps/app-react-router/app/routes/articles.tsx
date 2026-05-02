@@ -2,8 +2,9 @@ import type { Article } from 'personal-site'
 import { Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
 import { useLoaderData } from 'react-router'
 
-import type { Route } from './+types/articles'
 import { createCacheControlHeaders } from '#utils'
+
+import type { Route } from './+types/articles'
 
 export const meta: Route.MetaFunction = () => {
   return [{ title: articlesTitle }, { name: 'description', content: articlesDescription }]

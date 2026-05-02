@@ -1,7 +1,6 @@
+import type { ColorScheme } from 'personal-site'
 import type { ActionFunctionArgs } from 'react-router'
 import { createCookie, data } from 'react-router'
-
-import type { ColorScheme } from 'personal-site'
 
 const colorSchemeCookie = createCookie('color-scheme', {
   maxAge: 34560000,

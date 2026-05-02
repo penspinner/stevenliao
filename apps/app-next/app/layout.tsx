@@ -2,6 +2,7 @@ import { cookies } from 'next/headers'
 import * as React from 'react'
 
 import { RootLayoutComponent } from './layout-component'
+
 import './tailwind.css'
 import 'focus-visible'
 
