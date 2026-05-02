@@ -18,6 +18,27 @@ export const IndexPageComponent = ({ articles }: { articles: Article[] }) => {
       roles={[
         {
           company: 'Roofstock',
+          title: 'Senior Software Engineer',
+          logo: 'https://stevenliao.vercel.app/images/logos/roofstock.jpeg',
+          start: 'Oct 2024',
+          end: 'Present',
+        },
+        {
+          company: 'Sysarro',
+          title: 'Software Engineer (Contract)',
+          logo: 'https://stevenliao.vercel.app/images/logos/sysarro.svg',
+          start: 'Feb 2024',
+          end: 'Oct 2024',
+        },
+        {
+          company: 'Civil Street',
+          title: 'Lead Full Stack Engineer',
+          logo: 'https://stevenliao.vercel.app/images/logos/civil-street.jpeg',
+          start: 'Jan 2023',
+          end: 'Present',
+        },
+        {
+          company: 'Roofstock',
           title: 'Software Engineer',
           logo: 'https://stevenliao.vercel.app/images/logos/roofstock.jpeg',
           start: 'May 2022',

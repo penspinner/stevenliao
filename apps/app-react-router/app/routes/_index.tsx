@@ -40,6 +40,27 @@ const IndexPage = () => {
       roles={[
         {
           company: 'Roofstock',
+          title: 'Senior Software Engineer',
+          logo: '/images/logos/roofstock.jpeg',
+          start: 'Oct 2024',
+          end: 'Present',
+        },
+        {
+          company: 'Sysarro',
+          title: 'Software Engineer (Contract)',
+          logo: '/images/logos/sysarro.svg',
+          start: 'Feb 2024',
+          end: 'Oct 2024',
+        },
+        {
+          company: 'Civil Street',
+          title: 'Lead Full Stack Engineer',
+          logo: '/images/logos/civil-street.jpeg',
+          start: 'Jan 2023',
+          end: 'Present',
+        },
+        {
+          company: 'Roofstock',
           title: 'Software Engineer',
           logo: '/images/logos/roofstock.jpeg',
           start: 'May 2022',
