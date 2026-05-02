@@ -3,7 +3,6 @@
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "module": "ESNext"
+    "jsx": "react-jsx"
   }
 }
