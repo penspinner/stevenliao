@@ -14,14 +14,11 @@
   "dependencies": {
     "@headlessui/react": "^2.2.10",
     "@heroicons/react": "^2.2.0",
-    "@internationalized/date": "^3.12.1",
     "@radix-ui/react-dialog": "^1.1.15",
-    "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-toast": "^1.2.15",
     "clsx": "^2.1.1",
     "react": "^19.2.5",
-    "react-aria": "^3.48.0",
-    "react-stately": "^3.46.0"
+    "react-aria-components": "^1.13.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
