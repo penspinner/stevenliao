@@ -16,13 +16,14 @@
   },
   "rules": {
     "import/no-default-export": "error",
-    "unicorn/filename-case": ["error", { "case": "kebabCase" }],
-    "unicorn/no-new-array": "off",
+    "no-unused-expressions": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
     "typescript/consistent-type-imports": "error",
+    "typescript/no-deprecated": "error",
     "typescript/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
-    "no-unused-expressions": "off"
+    "unicorn/filename-case": ["error", { "case": "kebabCase" }],
+    "unicorn/no-new-array": "off"
   },
   "overrides": [
     {

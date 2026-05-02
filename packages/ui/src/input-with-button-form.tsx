@@ -1,7 +1,7 @@
 export type InputWithButtonFormProps = React.InputHTMLAttributes<HTMLInputElement> & {
   buttonLabel: string
   Icon: React.FC<React.SVGProps<SVGSVGElement>>
-  onFormSubmit?: React.FormEventHandler<HTMLFormElement>
+  onFormSubmit?: React.SubmitEventHandler<HTMLFormElement>
 }
 
 export const InputWithButtonForm = ({
