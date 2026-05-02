@@ -12,12 +12,9 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/typography": "^0.5.19",
-    "autoprefixer": "^10.4.21",
-    "clsx": "^2.1.1",
     "focus-visible": "^5.2.1",
     "next": "^16.2.4",
     "personal-site": "workspace:*",
-    "postcss-focus-visible": "^11.0.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "tailwindcss": "^4.2.4"
