@@ -1,4 +1,11 @@
-import { Listbox, Transition } from '@headlessui/react'
+import {
+  Button,
+  Label,
+  ListBox,
+  ListBoxItem,
+  type Key,
+  type Selection,
+} from 'react-aria-components'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import * as React from 'react'
@@ -18,73 +25,144 @@ type FieldListboxProps<Multiple extends boolean, TType extends Record<string, un
 
 const FieldListbox = <Multiple extends boolean, TType extends Record<string, unknown>>({
   getOptionKey,
-  options,
   label,
+  multiple,
+  onChange,
+  options,
   renderOptionLabel,
+  value,
   valueDisplay,
-  ...props
 }: FieldListboxProps<Multiple, TType>) => {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+
+  const selectedKeys = React.useMemo(() => {
+    if (multiple) {
+      return new Set<Key>((value as TType[])?.map(getOptionKey) ?? [])
+    }
+    const key = value ? getOptionKey(value as TType) : null
+    return key ? new Set<Key>([key]) : new Set<Key>()
+  }, [value, multiple, getOptionKey])
+
+  React.useEffect(() => {
+    if (!isOpen) return
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isOpen])
+
+  const handleSelectionChange = React.useCallback(
+    (selection: Selection) => {
+      if (selection === 'all') {
+        if (multiple) onChange(options as Multiple extends true ? TType[] : TType)
+        return
+      }
+      const selected = options.filter((o) => selection.has(getOptionKey(o)))
+      if (multiple) {
+        onChange(selected as Multiple extends true ? TType[] : TType)
+      } else {
+        if (selected[0]) {
+          onChange(selected[0] as Multiple extends true ? TType[] : TType)
+          setIsOpen(false)
+        }
+      }
+    },
+    [multiple, onChange, options, getOptionKey],
+  )
+
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
+  const listboxRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    if (isOpen) {
+      listboxRef.current?.focus()
+    }
+  }, [isOpen])
+
+  const handleDropdownKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setIsOpen(false)
+      buttonRef.current?.focus()
+    }
+  }
+
+  const handleDropdownBlur = (e: React.FocusEvent) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setIsOpen(false)
+    }
+  }
+
   return (
-    <Listbox {...(props as React.ComponentProps<typeof Listbox>)}>
-      {({ open }) => (
-        <div className="space-y-2">
-          <Listbox.Label className="block text-sm font-medium text-gray-700">{label}</Listbox.Label>
-          <div className="relative">
-            <Listbox.Button className="relative h-9 w-full cursor-default rounded border border-gray-300 bg-white py-2 pr-10 pl-3 text-left shadow-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:outline-none sm:text-sm">
-              <span className="block truncate">{valueDisplay}</span>
-              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-              </span>
-            </Listbox.Button>
-            <Transition
-              show={open}
-              as={React.Fragment}
-              leave="transition ease-in duration-100"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+    <div ref={containerRef} className="space-y-2">
+      <Label className="block text-sm font-medium text-gray-700">{label}</Label>
+      <div className="relative">
+        <Button
+          ref={buttonRef}
+          onPress={() => setIsOpen(!isOpen)}
+          className="relative h-9 w-full cursor-default rounded border border-gray-300 bg-white py-2 pr-10 pl-3 text-left shadow-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:outline-none sm:text-sm"
+        >
+          <span className="block truncate">{valueDisplay}</span>
+          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+            <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+          </span>
+        </Button>
+        {isOpen && (
+          <div
+            ref={listboxRef}
+            role="presentation"
+            tabIndex={-1}
+            className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-1 text-base shadow-lg ring-1 ring-black outline-none sm:text-sm"
+            onBlur={handleDropdownBlur}
+            onKeyDown={handleDropdownKeyDown}
+          >
+            <ListBox
+              selectionMode={multiple ? 'multiple' : 'single'}
+              selectedKeys={selectedKeys}
+              onSelectionChange={handleSelectionChange}
+              items={options}
+              className="outline-none"
+              disallowEmptySelection={!multiple}
             >
-              <Listbox.Options className="ring-opacity-5 absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-1 text-base shadow-lg ring-1 ring-black focus:outline-none sm:text-sm">
-                {options.map((option) => (
-                  <Listbox.Option
-                    key={getOptionKey(option)}
-                    className={({ active }) =>
-                      clsx(
-                        active ? 'bg-sky-900 text-white' : 'text-gray-900',
-                        'relative cursor-default select-none py-2 pl-3 pr-9',
-                      )
-                    }
-                    value={option}
-                  >
-                    {({ selected, active }) => (
-                      <>
-                        <span
-                          className={clsx(
-                            selected ? 'font-semibold' : 'font-normal',
-                            'block truncate',
-                          )}
-                        >
-                          {renderOptionLabel(option)}
-                        </span>
-                        {selected && (
-                          <span
-                            className={clsx(
-                              active ? 'text-white' : 'text-sky-900',
-                              'absolute inset-y-0 right-0 flex items-center pr-4',
-                            )}
-                          >
-                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                          </span>
+              {(option) => (
+                <ListBoxItem
+                  id={getOptionKey(option)}
+                  textValue={renderOptionLabel(option)}
+                  className={({ isFocused }) =>
+                    clsx(
+                      isFocused && 'bg-sky-900 text-white',
+                      !isFocused && 'text-gray-900',
+                      'relative cursor-default select-none py-2 pl-3 pr-9 outline-none',
+                    )
+                  }
+                >
+                  {({ isSelected }) => (
+                    <>
+                      <span
+                        className={clsx(
+                          isSelected ? 'font-semibold' : 'font-normal',
+                          'block truncate',
                         )}
-                      </>
-                    )}
-                  </Listbox.Option>
-                ))}
-              </Listbox.Options>
-            </Transition>
+                      >
+                        {renderOptionLabel(option)}
+                      </span>
+                      {isSelected && (
+                        <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-current">
+                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                        </span>
+                      )}
+                    </>
+                  )}
+                </ListBoxItem>
+              )}
+            </ListBox>
           </div>
-        </div>
-      )}
-    </Listbox>
+        )}
+      </div>
+    </div>
   )
 }
 
