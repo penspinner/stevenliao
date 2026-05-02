@@ -11,48 +11,36 @@ import {
   isSameDay,
 } from '@internationalized/date'
 import * as Popover from '@radix-ui/react-popover'
-import { useButton } from '@react-aria/button'
+import { useFocusRing } from 'react-aria/useFocusRing'
+import { useLocale } from 'react-aria/I18nProvider'
+import { mergeProps } from 'react-aria/mergeProps'
+import { useButton } from 'react-aria/useButton'
+import type { AriaButtonProps } from 'react-aria/useButton'
 import type {
   AriaCalendarCellProps,
   AriaCalendarGridProps,
   CalendarProps,
-  RangeCalendarProps,
-} from '@react-aria/calendar'
-import {
-  useCalendar,
-  useCalendarCell,
-  useCalendarGrid,
-  useRangeCalendar,
-} from '@react-aria/calendar'
-import type { AriaDateFieldProps } from '@react-aria/datepicker'
-import {
-  useDateField,
-  useDatePicker,
-  useDateRangePicker,
-  useDateSegment,
-} from '@react-aria/datepicker'
-import { useFocusRing } from '@react-aria/focus'
-import { useLocale } from '@react-aria/i18n'
-import { mergeProps } from '@react-aria/utils'
-import type { CalendarState, RangeCalendarState } from '@react-stately/calendar'
-import { useCalendarState, useRangeCalendarState } from '@react-stately/calendar'
-import type {
-  DateFieldState,
-  DatePickerStateOptions,
-  DateRangePickerStateOptions,
-  DateSegment,
-} from '@react-stately/datepicker'
-import {
-  useDateFieldState,
-  useDatePickerState,
-  useDateRangePickerState,
-} from '@react-stately/datepicker'
-import type { AriaButtonProps } from '@react-types/button'
-import type {
-  AriaDatePickerProps,
-  AriaDateRangePickerProps,
-  DateValue,
-} from '@react-types/datepicker'
+} from 'react-aria/useCalendar'
+import { useCalendar, useCalendarCell, useCalendarGrid } from 'react-aria/useCalendar'
+import { useRangeCalendar } from 'react-aria/useRangeCalendar'
+import type { RangeCalendarProps } from 'react-aria/useRangeCalendar'
+import type { AriaDateFieldProps } from 'react-aria/useDateField'
+import { useDateField, useDateSegment } from 'react-aria/useDateField'
+import { useDatePicker } from 'react-aria/useDatePicker'
+import type { AriaDatePickerProps } from 'react-aria/useDatePicker'
+import { useDateRangePicker } from 'react-aria/useDateRangePicker'
+import type { AriaDateRangePickerProps } from 'react-aria/useDateRangePicker'
+import type { CalendarState } from 'react-stately/useCalendarState'
+import { useCalendarState } from 'react-stately/useCalendarState'
+import type { RangeCalendarState } from 'react-stately/useRangeCalendarState'
+import { useRangeCalendarState } from 'react-stately/useRangeCalendarState'
+import type { DateFieldState, DateSegment } from 'react-stately/useDateFieldState'
+import { useDateFieldState } from 'react-stately/useDateFieldState'
+import type { DatePickerStateOptions } from 'react-stately/useDatePickerState'
+import { useDatePickerState } from 'react-stately/useDatePickerState'
+import type { DateRangePickerStateOptions } from 'react-stately/useDateRangePickerState'
+import { useDateRangePickerState } from 'react-stately/useDateRangePickerState'
+import type { DateValue } from 'react-stately/useDatePickerState'
 import clsx from 'clsx'
 import * as React from 'react'
 
