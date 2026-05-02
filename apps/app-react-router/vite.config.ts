@@ -4,10 +4,10 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   optimizeDeps: {
-    include: ['@heroicons/react', 'clsx', 'personal-site'],
+    include: ['personal-site'],
   },
   plugins: [tailwindcss(), reactRouter()],
-  // ssr: {
-  //   external: ['personal-site'],
-  // },
+  ssr: {
+    external: ['personal-site'],
+  },
 })
