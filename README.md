@@ -8,12 +8,12 @@ This project houses my personal site. It is a monorepo with a React Router app a
 ## Development
 
 ```sh
-pnpm install            # install dependencies
-pnpm dev:next           # start Next.js dev server + watch package build
-pnpm dev:react-router   # start React Router dev server + watch package build
-pnpm build              # build all packages and apps
-pnpm check:lint         # lint
-pnpm check:fmt          # format check
-pnpm check:ts           # type check
-pnpm fmt                # format write
+bun install            # install dependencies
+bun dev:next           # start Next.js dev server + watch package build
+bun dev:react-router   # start React Router dev server + watch package build
+bun run build          # build all packages and apps
+bun check:lint         # lint
+bun check:fmt          # format check
+bun check:ts           # type check
+bun fmt                # format write
 ```

@@ -16,6 +16,6 @@
     "**/.cache/**",
     "**/.turbo/**",
     "**/node_modules/**",
-    "pnpm-lock.yaml"
+    "bun.lock"
   ]
 }

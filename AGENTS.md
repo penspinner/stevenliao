@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Personal site monorepo. Two app variants — `app-next` (Next.js App Router) and `app-react-router` (React Router v7 framework mode) — render the same pages from the shared `personal-site` package. Maintained in parallel as a learning exercise; changes to pages/components belong in `personal-site`, not in either app.
 
 - Vercel deployment: `app-react-router` is the canonical site at `stevenliao.vercel.app`; `app-next` ships to `stevenliao-next.vercel.app`. Both use the edge runtime.
-- Package manager: pnpm 10 + Corepack. Node ≥ 24.
+- Package manager + runtime: Bun 1.3+. The build tools (Next/Vite/RR/tsdown) run under Bun's Node-compat runtime; Node is not required locally or in CI.
 - Build pipeline: Turborepo 2 (`tasks` schema, not `pipeline`). Persistent tasks do not need `--parallel`.
 - Tooling: Oxfmt for formatting, Oxlint for linting with type-aware rules enabled (no Prettier, no ESLint).
 
@@ -16,17 +16,17 @@ Personal site monorepo. Two app variants — `app-next` (Next.js App Router) and
 All run from the repo root.
 
 ```sh
-pnpm install                 # install (uses Corepack-pinned pnpm@10)
-pnpm build                   # turbo: builds personal-site → both apps
-pnpm dev:next                # turbo dev for app-next + personal-site watch
-pnpm dev:react-router        # turbo dev for app-react-router + personal-site watch
-pnpm check:fmt            # oxfmt --check .
-pnpm check:lint              # oxlint (type-aware via config)
-pnpm check:ts        # turbo: tsc --noEmit across workspaces (RR app also runs `react-router typegen`)
-pnpm fmt                  # oxfmt . (write)
+bun install                  # install
+bun run build                # turbo: builds personal-site → both apps
+bun dev:next                 # turbo dev for app-next + personal-site watch
+bun dev:react-router         # turbo dev for app-react-router + personal-site watch
+bun check:fmt                # oxfmt --check .
+bun check:lint               # oxlint (type-aware via config)
+bun check:ts                 # turbo: tsc --noEmit across workspaces (RR app also runs `react-router typegen`)
+bun fmt                      # oxfmt . (write)
 ```
 
-Single workspace: `pnpm --filter <name> <script>` (e.g. `pnpm --filter personal-site watch` to rebuild on change).
+Single workspace: `bun --filter <name> <script>` (e.g. `bun --filter personal-site watch` to rebuild on change).
 
 ## Architecture
 

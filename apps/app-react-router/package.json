@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "react-router build",
-    "check:ts": "pnpm typegen && tsc --noEmit",
+    "check:ts": "bun run typegen && tsc --noEmit",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typegen": "react-router typegen"

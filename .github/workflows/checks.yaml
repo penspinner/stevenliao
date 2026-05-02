@@ -7,49 +7,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
-      - name: Use Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: 'pnpm'
+      - uses: oven-sh/setup-bun@v2
       - name: Install dependencies
-        run: pnpm install
+        run: bun install --frozen-lockfile
       - name: Format check
-        run: pnpm check:fmt
+        run: bun run check:fmt
   check-lint:
     name: Check lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
-      - name: Use Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: 'pnpm'
+      - uses: oven-sh/setup-bun@v2
       - name: Install dependencies
-        run: pnpm install
+        run: bun install --frozen-lockfile
       - name: Typegen
-        run: pnpm typegen
+        run: bun run typegen
       - name: Build apps and packages
-        run: pnpm build
+        run: bun run build
       - name: Lint check
-        run: pnpm check:lint
+        run: bun run check:lint
   check-typescript:
     name: Check TypeScript
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
-      - name: Use Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: 'pnpm'
+      - uses: oven-sh/setup-bun@v2
       - name: Install dependencies
-        run: pnpm install
+        run: bun install --frozen-lockfile
       - name: Build apps and packages
-        run: pnpm build
+        run: bun run build
       - name: TypeScript check
-        run: pnpm check:ts
+        run: bun run check:ts
