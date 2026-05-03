@@ -26,11 +26,13 @@
     "isbot": "^5.1.39",
     "personal-site": "workspace:*",
     "react": "^19.2.5",
+    "react-aria-components": "^1.17.0",
     "react-dom": "^19.2.5",
     "react-router": "^7.14.2",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
+    "@react-aria/optimize-locales-plugin": "^1.2.0",
     "@react-router/dev": "^7.14.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

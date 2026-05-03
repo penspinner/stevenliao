@@ -3,6 +3,7 @@ import { Document as Doc, RootErrorBoundary, RootNotFound } from 'personal-site'
 import type { ColorScheme } from 'personal-site'
 import { Layout as PageLayout } from 'personal-site/client'
 import * as React from 'react'
+import { useLocale } from 'react-aria-components'
 import {
   isRouteErrorResponse,
   Link,
@@ -114,9 +115,12 @@ const Document = ({
   children: React.ReactNode
   colorScheme: ColorScheme
 }) => {
+  const { locale, direction } = useLocale()
   return (
     <Doc
       colorScheme={colorScheme}
+      dir={direction}
+      lang={locale}
       head={
         <>
           <meta charSet="utf-8" />
