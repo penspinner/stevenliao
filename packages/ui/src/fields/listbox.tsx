@@ -1,3 +1,6 @@
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
+import * as React from 'react'
 import {
   Button,
   Label,
@@ -6,9 +9,6 @@ import {
   type Key,
   type Selection,
 } from 'react-aria-components'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
-import * as React from 'react'
 
 import { Field } from './field'
 

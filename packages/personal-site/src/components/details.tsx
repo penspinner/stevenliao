@@ -1,14 +1,19 @@
 import * as React from 'react'
 
 /**
- * An enhanced `<details>` component that's intended to be used as a menu (a bit
- * like a menu-button).
+ * An enhanced `<details>` component that's intended to be used as a menu (a bit like a menu-button).
  */
-export const Details = React.forwardRef<
-  HTMLDetailsElement,
-  React.DetailsHTMLAttributes<HTMLDetailsElement>
->((props, forwardedRef) => {
-  const { onToggle, onMouseDown, onTouchStart, onFocus, open, ...rest } = props
+export const Details = ({
+  onToggle,
+  onMouseDown,
+  onTouchStart,
+  onFocus,
+  open,
+  ref,
+  ...rest
+}: React.DetailsHTMLAttributes<HTMLDetailsElement> & {
+  ref?: React.Ref<HTMLDetailsElement>
+}) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const clickRef = React.useRef<boolean>(false)
   const focusRef = React.useRef<boolean>(false)
@@ -36,31 +41,29 @@ export const Details = React.forwardRef<
 
   return (
     <details
-      ref={forwardedRef}
+      ref={ref}
       open={open ?? isOpen}
       onToggle={(event) => {
-        onToggle && onToggle(event)
+        onToggle?.(event)
         if (event.defaultPrevented) return
         setIsOpen(event.currentTarget.open)
       }}
       onMouseDown={(event) => {
-        onMouseDown && onMouseDown(event)
+        onMouseDown?.(event)
         if (event.defaultPrevented) return
         if (isOpen) clickRef.current = true
       }}
       onTouchStart={(event) => {
-        onTouchStart && onTouchStart(event)
+        onTouchStart?.(event)
         if (event.defaultPrevented) return
         if (isOpen) clickRef.current = true
       }}
       onFocus={(event) => {
-        onFocus && onFocus(event)
+        onFocus?.(event)
         if (event.defaultPrevented) return
         if (isOpen) focusRef.current = true
       }}
       {...rest}
     />
   )
-})
-
-Details.displayName = 'Details'
+}
