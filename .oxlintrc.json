@@ -69,6 +69,12 @@
       }
     },
     {
+      "files": ["**/*.stories.*", "**/.storybook/*"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    },
+    {
       "files": ["**/*.test.*"],
       "rules": {
         "typescript/no-non-null-assertion": "off"
@@ -84,6 +90,7 @@
     "**/.cache/**",
     "**/.turbo/**",
     "**/.react-router/**",
+    "**/storybook-static/**",
     "**/node_modules/**"
   ]
 }

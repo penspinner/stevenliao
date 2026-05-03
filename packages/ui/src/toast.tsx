@@ -19,7 +19,7 @@ export const ToastViewport = () => {
   return (
     <UNSTABLE_ToastRegion
       queue={toastQueue}
-      className="fixed right-0 bottom-0 z-50 flex w-96 max-w-screen-xl list-none flex-col gap-3 p-6 outline-none"
+      className="fixed right-0 bottom-0 z-50 flex w-96 max-w-7xl list-none flex-col gap-3 p-6 outline-none"
     >
       {({ toast }) => (
         <RACToast
@@ -28,22 +28,22 @@ export const ToastViewport = () => {
         >
           <div className="flex items-start gap-x-3 p-4">
             {toast.content.type === 'success' ? (
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <CheckCircleIcon className="h-6 w-6 text-green-400" aria-hidden="true" />
               </div>
             ) : (
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <XCircleIcon className="h-6 w-6 text-red-400" aria-hidden="true" />
               </div>
             )}
-            <div className="w-0 flex-1 pt-0.5">
+            <div className="w-0 flex-1">
               <UNSTABLE_ToastContent>
                 <Text slot="title" className="text-sm font-medium text-gray-900">
                   {toast.content.description}
                 </Text>
               </UNSTABLE_ToastContent>
             </div>
-            <div className="flex flex-shrink-0">
+            <div className="flex shrink-0">
               <Button
                 slot="close"
                 className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"

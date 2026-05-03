@@ -31,8 +31,6 @@ import type {
   DateValue,
 } from 'react-aria-components'
 
-import { Field } from './field'
-
 export type DatePickerProps<T extends DateValue> = AriaDatePickerProps<T> & {
   label?: React.ReactNode
 }
@@ -55,24 +53,6 @@ export const DatePicker = <T extends DateValue>({ label, ...props }: DatePickerP
       </Dialog>
     </Popover>
   </AriaDatePicker>
-)
-
-export type FieldDatePickerProps<T extends DateValue> = DatePickerProps<T> & {
-  error?: string | string[]
-}
-
-export const FieldDatePicker = <T extends DateValue>({
-  error,
-  ...props
-}: FieldDatePickerProps<T>) => (
-  <Field error={error}>
-    <div className="space-y-2">
-      <DatePicker {...props} />
-      <Field.Error className="text-sm text-red-600">
-        <Field.ErrorText />
-      </Field.Error>
-    </div>
-  </Field>
 )
 
 export type DateRangePickerProps<T extends DateValue> = AriaDateRangePickerProps<T> & {
@@ -116,14 +96,9 @@ export const FieldDateRangePicker = <T extends DateValue>({
   error,
   ...props
 }: FieldDateRangePickerProps<T>) => (
-  <Field error={error}>
-    <div className="space-y-2">
-      <DateRangePicker {...props} />
-      <Field.Error className="text-sm text-red-600">
-        <Field.ErrorText />
-      </Field.Error>
-    </div>
-  </Field>
+  <div className="space-y-2">
+    <DateRangePicker {...props} />
+  </div>
 )
 
 const DateFieldContainer = ({ children }: { children: React.ReactNode }) => (

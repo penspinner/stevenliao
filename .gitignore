@@ -38,3 +38,4 @@ tsconfig.tsbuildinfo
 .react-router
 .vercel
 .vite
+storybook-static

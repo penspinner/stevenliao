@@ -15,6 +15,7 @@
     "**/public/build/**",
     "**/.cache/**",
     "**/.turbo/**",
+    "**/storybook-static/**",
     "**/node_modules/**",
     "bun.lock"
   ]

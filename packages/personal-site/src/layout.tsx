@@ -6,7 +6,7 @@ import * as React from 'react'
 
 import { Container } from './components/container'
 import { InnerContainer, OuterContainer } from './components/container'
-import { Details } from './components/details'
+import { Menu, MenuButton, MenuItem } from './components/menu'
 import type { ColorScheme } from './types'
 
 export const Layout = ({
@@ -16,15 +16,21 @@ export const Layout = ({
 }: React.PropsWithChildren<React.ComponentProps<typeof Header>>) => {
   return (
     <>
-      <div className="fixed inset-0 flex justify-center sm:px-8">
-        <div className="flex w-full max-w-7xl lg:px-8">
-          <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
-        </div>
-      </div>
+      <ElevatedBackground />
       <Header linkRender={linkRender} {...props} />
       {children}
       <Footer linkRender={linkRender} />
     </>
+  )
+}
+
+const ElevatedBackground = () => {
+  return (
+    <div className="fixed inset-0 flex justify-center sm:px-8">
+      <div className="flex w-full max-w-7xl lg:px-8">
+        <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
+      </div>
+    </div>
   )
 }
 
@@ -55,8 +61,8 @@ const Header = ({
               </AvatarContainer>
             </div>
             <div className="flex flex-1 justify-end md:justify-center">
-              <MobileNavigation currentPathname={currentPathname} linkRender={linkRender} />
-              <DesktopNavigation currentPathname={currentPathname} linkRender={linkRender} />
+              <MobileNav currentPathname={currentPathname} linkRender={linkRender} />
+              <DesktopNav currentPathname={currentPathname} linkRender={linkRender} />
             </div>
             <div className="flex justify-end md:flex-1">
               {colorSchemeToggleRender && (
@@ -90,17 +96,23 @@ const MobileNavItem = ({
 }) => {
   const isActive = currentPathname === href
   return (
-    <li>
-      {linkRender({
-        href,
-        className: clsx('block py-1', isActive && 'text-teal-500 dark:text-teal-400'),
-        children,
-      })}
-    </li>
+    <MenuItem
+      isActive={isActive}
+      href={href}
+      render={(props) => {
+        if (!('href' in props) || !props.href) {
+          throw new Error('MobileNavItem props must include href')
+        }
+
+        return linkRender(props)
+      }}
+    >
+      {children}
+    </MenuItem>
   )
 }
 
-const MobileNavigation = ({
+const MobileNav = ({
   currentPathname,
   linkRender,
 }: {
@@ -108,44 +120,27 @@ const MobileNavigation = ({
   linkRender: LinkRender
 }) => {
   return (
-    <Details className="pointer-events-auto relative md:hidden">
-      <summary className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
-        Menu
-        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
-      </summary>
-      <DetailsPopup>
-        <div className="px-4">
-          <nav>
-            <ul className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
-              <MobileNavItem
-                currentPathname={currentPathname}
-                href="/about"
-                linkRender={linkRender}
-              >
-                About
-              </MobileNavItem>
-              <MobileNavItem
-                currentPathname={currentPathname}
-                href="/articles"
-                linkRender={linkRender}
-              >
-                Articles
-              </MobileNavItem>
-              <MobileNavItem
-                currentPathname={currentPathname}
-                href="/projects"
-                linkRender={linkRender}
-              >
-                Projects
-              </MobileNavItem>
-              <MobileNavItem currentPathname={currentPathname} href="/uses" linkRender={linkRender}>
-                Uses
-              </MobileNavItem>
-            </ul>
-          </nav>
-        </div>
-      </DetailsPopup>
-    </Details>
+    <Menu
+      trigger={
+        <MenuButton>
+          Menu
+          <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
+        </MenuButton>
+      }
+    >
+      <MobileNavItem currentPathname={currentPathname} href="/about" linkRender={linkRender}>
+        About
+      </MobileNavItem>
+      <MobileNavItem currentPathname={currentPathname} href="/articles" linkRender={linkRender}>
+        Articles
+      </MobileNavItem>
+      <MobileNavItem currentPathname={currentPathname} href="/projects" linkRender={linkRender}>
+        Projects
+      </MobileNavItem>
+      <MobileNavItem currentPathname={currentPathname} href="/uses" linkRender={linkRender}>
+        Uses
+      </MobileNavItem>
+    </Menu>
   )
 }
 
@@ -153,8 +148,8 @@ const NavItem = ({
   href,
   currentPathname,
   children,
-  linkRender = ({ children: linkChildren, className, href }) => (
-    <a className={className} href={href}>
+  linkRender = ({ children: linkChildren, className, href, ...props }) => (
+    <a className={className} href={href} {...props}>
       {children}
       {linkChildren}
     </a>
@@ -165,34 +160,30 @@ const NavItem = ({
   linkRender?: LinkRender
 }>) => {
   const isActive = currentPathname === href
-  return (
-    <li>
-      {linkRender({
-        href,
-        className: clsx(
-          'relative block px-3 py-2 transition outline-none rounded-full focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-zinc-200',
-          isActive
-            ? 'text-teal-500 dark:text-teal-400'
-            : 'hover:text-teal-500 dark:hover:text-teal-400',
-        ),
-        children: (
-          <>
-            {children}
-            {isActive && (
-              <motion.span
-                className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"
-                layoutId="active-link"
-                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-              />
-            )}
-          </>
-        ),
-      })}
-    </li>
-  )
+  return linkRender({
+    href,
+    className: clsx(
+      'relative block px-3 py-2 transition outline-none rounded-full focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-zinc-200',
+      isActive
+        ? 'text-teal-500 dark:text-teal-400'
+        : 'hover:text-teal-500 dark:hover:text-teal-400',
+    ),
+    children: (
+      <>
+        {children}
+        {isActive && (
+          <motion.span
+            className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"
+            layoutId="active-link"
+            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+      </>
+    ),
+  })
 }
 
-const DesktopNavigation = ({
+const DesktopNav = ({
   currentPathname,
   linkRender,
 }: {
@@ -201,7 +192,7 @@ const DesktopNavigation = ({
 }) => {
   return (
     <nav className="pointer-events-auto hidden md:block">
-      <ul className="flex rounded-full bg-white/90 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+      <div className="flex rounded-full bg-white/90 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
         <NavItem currentPathname={currentPathname} href="/about" linkRender={linkRender}>
           About
         </NavItem>
@@ -214,7 +205,7 @@ const DesktopNavigation = ({
         <NavItem currentPathname={currentPathname} href="/uses" linkRender={linkRender}>
           Uses
         </NavItem>
-      </ul>
+      </div>
     </nav>
   )
 }
@@ -268,10 +259,10 @@ const Img = ({
 
 const ColorSchemeToggle = ({ colorScheme }: { colorScheme: ColorScheme }) => {
   return (
-    <Details className="relative cursor-pointer">
+    <details className="group relative cursor-pointer">
       <summary
         aria-label="Color scheme"
-        className="group rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur transition outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 dark:focus-visible:ring-zinc-200 dark:focus-visible:ring-offset-white/10"
+        className="flex rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur transition outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 dark:focus-visible:ring-zinc-200 dark:focus-visible:ring-offset-white/10"
       >
         {colorScheme === 'dark' ? (
           <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition not-dark:fill-teal-400/10 not-dark:stroke-teal-500 dark:block dark:group-hover:stroke-zinc-400" />
@@ -281,31 +272,23 @@ const ColorSchemeToggle = ({ colorScheme }: { colorScheme: ColorScheme }) => {
           <Cog8ToothIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 text-zinc-700 dark:text-zinc-200" />
         )}
       </summary>
-      <DetailsPopup>
-        <ColorSchemeButton colorScheme={colorScheme} label="Light" value="light">
-          <SunIcon className="h-6 w-6" />
-          Light
-        </ColorSchemeButton>
-        <ColorSchemeButton colorScheme={colorScheme} label="Dark" value="dark">
-          <MoonIcon className="h-6 w-6" />
-          Dark
-        </ColorSchemeButton>
-        <ColorSchemeButton colorScheme={colorScheme} label="System" value="system">
-          <Cog8ToothIcon className="h-6 w-6" />
-          System
-        </ColorSchemeButton>
-      </DetailsPopup>
-    </Details>
-  )
-}
-
-const DetailsPopup = ({ children }: React.PropsWithChildren) => {
-  return (
-    <div className="absolute right-0 z-20 md:left-0">
-      <div className="relative top-1 w-40 rounded-lg border border-zinc-100 bg-white py-2 shadow-lg dark:border-zinc-400 dark:bg-zinc-800">
-        {children}
+      <div className="absolute right-0 z-20 md:left-0">
+        <div className="relative top-1 w-40 rounded-lg border border-zinc-100 bg-white py-2 shadow-lg dark:border-zinc-400 dark:bg-zinc-800">
+          <ColorSchemeButton colorScheme={colorScheme} label="Light" value="light">
+            <SunIcon className="h-6 w-6" />
+            Light
+          </ColorSchemeButton>
+          <ColorSchemeButton colorScheme={colorScheme} label="Dark" value="dark">
+            <MoonIcon className="h-6 w-6" />
+            Dark
+          </ColorSchemeButton>
+          <ColorSchemeButton colorScheme={colorScheme} label="System" value="system">
+            <Cog8ToothIcon className="h-6 w-6" />
+            System
+          </ColorSchemeButton>
+        </div>
       </div>
-    </div>
+    </details>
   )
 }
 
@@ -323,12 +306,14 @@ const ColorSchemeButton = ({
       disabled={colorScheme === props.value}
       name="colorScheme"
       className={clsx(
-        'flex w-full items-center gap-4 px-4 py-1 text-sm font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-teal-500',
+        'flex w-full items-center gap-3 px-4 py-1 text-sm font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-teal-500',
         colorScheme === props.value
-          ? 'group-hover:stroke-teal-600" fill-teal-50 stroke-teal-500 text-teal-500 group-hover:fill-teal-50 dark:text-teal-400 '
-          : 'fill-zinc-100 stroke-zinc-500 text-zinc-700 transition hover:bg-zinc-50 active:text-zinc-200 group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:active:text-zinc-200',
+          ? 'fill-teal-50 stroke-teal-500 text-teal-500 dark:text-teal-400'
+          : 'fill-zinc-100 stroke-zinc-500 text-zinc-700 hover:bg-zinc-50 dark:text-zinc-200 dark:hover:bg-zinc-700',
       )}
-    />
+    >
+      {props.children}
+    </button>
   )
 }
 

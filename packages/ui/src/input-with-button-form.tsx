@@ -16,7 +16,7 @@ export const InputWithButtonForm = ({
       method="get"
       onSubmit={onFormSubmit}
     >
-      <div className="relative flex flex-grow items-stretch focus-within:z-10">
+      <div className="relative flex grow items-stretch focus-within:z-10">
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <Icon className="h-5 w-5 text-gray-400" aria-hidden="true" />
         </div>

@@ -1,34 +1,52 @@
 import clsx from 'clsx'
+import { Button as RACButton } from 'react-aria-components'
+import type { ButtonProps as RACButtonProps } from 'react-aria-components'
 
-import { Spinner } from './spinner'
+import { IndeterminateProgress } from './indeterminate-progress'
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = RACButtonProps & {
   loading?: boolean
-  variant?: 'contained' | 'text'
+  variant?: 'primary' | 'secondary'
 }
 
 export const Button = ({
   children,
   className,
-  disabled,
+  isDisabled,
   loading,
-  variant = 'contained',
+  variant = 'primary',
   ...props
 }: ButtonProps) => {
   return (
-    <button
+    <RACButton
       {...props}
-      className={clsx(getButtonVariantClassName(variant), className)}
-      disabled={disabled || loading}
+      className={clsx(
+        'inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none disabled:opacity-70',
+        variantClassNames[variant],
+        className,
+      )}
+      isDisabled={isDisabled || loading}
     >
-      {loading && <Spinner className="text-white motion-reduce:hidden" />}
-      {children}
-    </button>
+      {typeof children === 'function' ? (
+        (...args) => (
+          <>
+            {loading && <IndeterminateProgress className="text-white" />}
+            {children(...args)}
+          </>
+        )
+      ) : (
+        <>
+          {loading && <IndeterminateProgress className="text-white" />}
+          {children}
+        </>
+      )}
+    </RACButton>
   )
 }
 
-const getButtonVariantClassName = (variant: ButtonProps['variant']) => {
-  return variant === 'contained'
-    ? 'inline-flex items-center text-sm gap-2 rounded border-transparent bg-sky-900 px-3 py-2 font-medium leading-4 text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 disabled:opacity-60 disabled:hover:bg-sky-900'
-    : 'text-sky-900 hover:text-sky-700 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:text-sky-900'
+const variantClassNames = {
+  primary:
+    'bg-zinc-800 font-semibold text-zinc-100 hover:bg-zinc-700 active:bg-zinc-800 active:text-zinc-100/70 dark:bg-zinc-700 dark:hover:bg-zinc-600 dark:active:bg-zinc-700 dark:active:text-zinc-100/70',
+  secondary:
+    'bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70',
 }
