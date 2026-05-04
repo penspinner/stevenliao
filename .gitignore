@@ -39,3 +39,4 @@ tsconfig.tsbuildinfo
 .vercel
 .vite
 storybook-static
+.env*.local
