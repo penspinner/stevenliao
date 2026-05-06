@@ -12,7 +12,7 @@ export default meta
 export const Default: StoryObj = {
   render: () => (
     <Card>
-      <Card.Title href="#">Building an accessible component library</Card.Title>
+      <Card.Title>Building an accessible component library</Card.Title>
       <Card.Description>
         Learn how to create reusable, accessible UI components using React Aria Components and
         Tailwind CSS.
@@ -30,8 +30,8 @@ export const Default: StoryObj = {
 export const WithEyebrow: StoryObj = {
   render: () => (
     <Card>
-      <Card.Title as="h3">Understanding state machines</Card.Title>
-      <Card.Eyebrow decorate>Engineering</Card.Eyebrow>
+      <Card.Title>Understanding state machines</Card.Title>
+      <Card.Eyebrow>Engineering</Card.Eyebrow>
       <Card.Description>
         State machines are a powerful pattern for managing complex UI state in React applications.
       </Card.Description>
