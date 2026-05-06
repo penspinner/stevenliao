@@ -18,9 +18,7 @@ export const Default: Story = {
         <Button onPress={() => toast.success('Operation completed successfully.')}>
           Show Success Toast
         </Button>
-        <Button onPress={() => toast.danger('Something went wrong.')}>
-          Show Error Toast
-        </Button>
+        <Button onPress={() => toast.danger('Something went wrong.')}>Show Error Toast</Button>
       </div>
       <ToastProvider />
     </>

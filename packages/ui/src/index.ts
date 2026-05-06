@@ -1,5 +1,6 @@
 export * from './container'
 export * from './button'
+export * from './spinner'
 export * from './card'
 export * from './input'
 export * from './input-with-button-form'

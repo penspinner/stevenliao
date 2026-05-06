@@ -100,14 +100,16 @@ Direct API-preserving migration — map each RAC component to its closest HeroUI
 ## Dependency Changes
 
 **package.json**:
+
 - Add: `@heroui/react`, `@heroui/styles`
 - Remove: `react-aria-components`
 - Keep: `@heroicons/react`, `clsx`, `react`
 
 **CSS** (`.storybook/tailwind.css`):
+
 ```css
-@import "tailwindcss";
-@import "@heroui/styles";
+@import 'tailwindcss';
+@import '@heroui/styles';
 @source "../src";
 /* dark variant + other config stays */
 ```

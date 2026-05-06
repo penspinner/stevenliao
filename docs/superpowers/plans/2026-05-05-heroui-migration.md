@@ -12,31 +12,32 @@
 
 ## File Structure
 
-| File | Action |
-|------|--------|
-| `packages/ui/package.json` | Modify — swap react-aria-components for @heroui/react + @heroui/styles |
-| `packages/ui/.storybook/tailwind.css` | Modify — add `@import "@heroui/styles"` |
-| `packages/ui/src/button.tsx` | Modify — replace RAC Button with HeroUI Button |
-| `packages/ui/src/indeterminate-progress.tsx` | Delete — replaced by HeroUI Button's built-in `isPending` |
-| `packages/ui/src/input.tsx` | Modify — replace RAC TextField/Input/Label/FieldError with HeroUI |
-| `packages/ui/src/toast.tsx` | Modify — replace RAC Toast with HeroUI Toast.Provider + toast() |
-| `packages/ui/src/date-picker.tsx` | Modify — replace RAC DatePicker/DateRangePicker with HeroUI compounds |
-| `packages/ui/src/card.tsx` | Modify — replace custom Card with HeroUI Card compound |
-| `packages/ui/src/input-with-button-form.tsx` | Modify — replace native input/button with HeroUI Input + Button |
-| `packages/ui/src/index.ts` | Modify — remove indeterminate-progress export |
-| `packages/ui/src/indeterminate-progress.stories.tsx` | Delete |
-| `packages/ui/src/toast.stories.tsx` | Modify — update for new Toast API |
-| `packages/ui/src/button.stories.tsx` | Modify — update for HeroUI Button props |
-| `packages/ui/src/input.stories.tsx` | Modify — update for HeroUI TextField API |
-| `packages/ui/src/date-picker.stories.tsx` | Modify — update for HeroUI DatePicker |
-| `packages/ui/src/card.stories.tsx` | Modify — update for HeroUI Card compound |
-| `packages/ui/src/input-with-button-form.stories.tsx` | Modify — update for HeroUI internals |
+| File                                                 | Action                                                                 |
+| ---------------------------------------------------- | ---------------------------------------------------------------------- |
+| `packages/ui/package.json`                           | Modify — swap react-aria-components for @heroui/react + @heroui/styles |
+| `packages/ui/.storybook/tailwind.css`                | Modify — add `@import "@heroui/styles"`                                |
+| `packages/ui/src/button.tsx`                         | Modify — replace RAC Button with HeroUI Button                         |
+| `packages/ui/src/indeterminate-progress.tsx`         | Delete — replaced by HeroUI Button's built-in `isPending`              |
+| `packages/ui/src/input.tsx`                          | Modify — replace RAC TextField/Input/Label/FieldError with HeroUI      |
+| `packages/ui/src/toast.tsx`                          | Modify — replace RAC Toast with HeroUI Toast.Provider + toast()        |
+| `packages/ui/src/date-picker.tsx`                    | Modify — replace RAC DatePicker/DateRangePicker with HeroUI compounds  |
+| `packages/ui/src/card.tsx`                           | Modify — replace custom Card with HeroUI Card compound                 |
+| `packages/ui/src/input-with-button-form.tsx`         | Modify — replace native input/button with HeroUI Input + Button        |
+| `packages/ui/src/index.ts`                           | Modify — remove indeterminate-progress export                          |
+| `packages/ui/src/indeterminate-progress.stories.tsx` | Delete                                                                 |
+| `packages/ui/src/toast.stories.tsx`                  | Modify — update for new Toast API                                      |
+| `packages/ui/src/button.stories.tsx`                 | Modify — update for HeroUI Button props                                |
+| `packages/ui/src/input.stories.tsx`                  | Modify — update for HeroUI TextField API                               |
+| `packages/ui/src/date-picker.stories.tsx`            | Modify — update for HeroUI DatePicker                                  |
+| `packages/ui/src/card.stories.tsx`                   | Modify — update for HeroUI Card compound                               |
+| `packages/ui/src/input-with-button-form.stories.tsx` | Modify — update for HeroUI internals                                   |
 
 ---
 
 ### Task 1: Install HeroUI dependencies and update CSS
 
 **Files:**
+
 - Modify: `packages/ui/package.json`
 - Modify: `packages/ui/.storybook/tailwind.css`
 
@@ -82,6 +83,7 @@ git commit -m "deps: replace react-aria-components with @heroui/react + @heroui/
 ### Task 2: Convert Button to HeroUI
 
 **Files:**
+
 - Modify: `packages/ui/src/button.tsx`
 
 - [ ] **Step 1: Replace button.tsx**
@@ -121,6 +123,7 @@ git commit -m "refactor(ui): convert Button to HeroUI"
 ### Task 3: Remove IndeterminateProgress
 
 **Files:**
+
 - Delete: `packages/ui/src/indeterminate-progress.tsx`
 - Delete: `packages/ui/src/indeterminate-progress.stories.tsx`
 - Modify: `packages/ui/src/index.ts`
@@ -135,6 +138,7 @@ rm packages/ui/src/indeterminate-progress.stories.tsx
 - [ ] **Step 2: Remove from barrel export**
 
 Edit `packages/ui/src/index.ts` — remove the line:
+
 ```
 export * from './indeterminate-progress'
 ```
@@ -151,6 +155,7 @@ git commit -m "refactor(ui): remove IndeterminateProgress, replaced by HeroUI Bu
 ### Task 4: Convert FieldInput to HeroUI TextField
 
 **Files:**
+
 - Modify: `packages/ui/src/input.tsx`
 
 - [ ] **Step 1: Replace input.tsx**
@@ -187,10 +192,7 @@ export const FieldInput = ({
             {leading}
           </div>
         )}
-        <Input
-          {...props}
-          className={leading ? 'pl-10' : undefined}
-        />
+        <Input {...props} className={leading ? 'pl-10' : undefined} />
         {trailing && (
           <div className="absolute inset-y-0 right-0 flex items-center pr-3">{trailing}</div>
         )}
@@ -222,6 +224,7 @@ git commit -m "refactor(ui): convert FieldInput to HeroUI TextField"
 ### Task 5: Convert Toast to HeroUI Toast.Provider + toast()
 
 **Files:**
+
 - Modify: `packages/ui/src/toast.tsx`
 
 - [ ] **Step 1: Replace toast.tsx**
@@ -258,6 +261,7 @@ git commit -m "refactor(ui): convert Toast to HeroUI Toast.Provider + toast()"
 ### Task 6: Convert DatePicker and DateRangePicker to HeroUI
 
 **Files:**
+
 - Modify: `packages/ui/src/date-picker.tsx`
 
 - [ ] **Step 1: Replace date-picker.tsx**
@@ -277,16 +281,11 @@ import type { ComponentProps } from 'react'
 
 export type DatePickerProps = ComponentProps<typeof HeroDatePicker>
 
-export const DatePicker = ({
-  label,
-  ...props
-}: DatePickerProps & { label?: React.ReactNode }) => (
+export const DatePicker = ({ label, ...props }: DatePickerProps & { label?: React.ReactNode }) => (
   <HeroDatePicker {...props}>
     {label && <Label>{label}</Label>}
     <DateField.Group fullWidth>
-      <DateField.Input>
-        {(segment) => <DateField.Segment segment={segment} />}
-      </DateField.Input>
+      <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
       <DateField.Suffix>
         <HeroDatePicker.Trigger>
           <HeroDatePicker.TriggerIndicator />
@@ -355,7 +354,9 @@ export const DateRangePicker = ({
           <RangeCalendar.GridHeader>
             {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
           </RangeCalendar.GridHeader>
-          <RangeCalendar.GridBody>{(date) => <RangeCalendar.Cell date={date} />}</RangeCalendar.GridBody>
+          <RangeCalendar.GridBody>
+            {(date) => <RangeCalendar.Cell date={date} />}
+          </RangeCalendar.GridBody>
         </RangeCalendar.Grid>
         <RangeCalendar.YearPickerGrid>
           <RangeCalendar.YearPickerGridBody>
@@ -371,10 +372,7 @@ export type FieldDateRangePickerProps = DateRangePickerProps & {
   error?: string | string[]
 }
 
-export const FieldDateRangePicker = ({
-  error,
-  ...props
-}: FieldDateRangePickerProps) => (
+export const FieldDateRangePicker = ({ error, ...props }: FieldDateRangePickerProps) => (
   <div className="space-y-2">
     <DateRangePicker {...props} />
   </div>
@@ -401,6 +399,7 @@ git commit -m "refactor(ui): convert DatePicker/DateRangePicker to HeroUI"
 ### Task 7: Convert Card to HeroUI Card compound
 
 **Files:**
+
 - Modify: `packages/ui/src/card.tsx`
 
 - [ ] **Step 1: Replace card.tsx**
@@ -411,11 +410,7 @@ Write `packages/ui/src/card.tsx`:
 import { Badge, Card as HeroCard, Link } from '@heroui/react'
 import type { ComponentProps } from 'react'
 
-export const Card = ({
-  children,
-  className,
-  ...props
-}: ComponentProps<typeof HeroCard>) => {
+export const Card = ({ children, className, ...props }: ComponentProps<typeof HeroCard>) => {
   return (
     <HeroCard className={className} {...props}>
       {children}
@@ -452,10 +447,7 @@ Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
   )
 }
 
-Card.Link = function CardLink({
-  children,
-  ...props
-}: ComponentProps<typeof Link>) {
+Card.Link = function CardLink({ children, ...props }: ComponentProps<typeof Link>) {
   return <Link {...props}>{children}</Link>
 }
 
@@ -492,6 +484,7 @@ git commit -m "refactor(ui): convert Card to HeroUI Card compound"
 ### Task 8: Convert InputWithButtonForm to use HeroUI Input + Button
 
 **Files:**
+
 - Modify: `packages/ui/src/input-with-button-form.tsx`
 
 - [ ] **Step 1: Replace input-with-button-form.tsx**
@@ -549,6 +542,7 @@ git commit -m "refactor(ui): convert InputWithButtonForm to use HeroUI Input + B
 ### Task 9: Update Storybook stories
 
 **Files:**
+
 - Modify: `packages/ui/src/button.stories.tsx`
 - Modify: `packages/ui/src/toast.stories.tsx`
 - Modify: `packages/ui/src/input.stories.tsx`
@@ -637,9 +631,7 @@ export const Default: Story = {
         <Button onPress={() => toast.success('Operation completed successfully.')}>
           Show Success Toast
         </Button>
-        <Button onPress={() => toast.danger('Something went wrong.')}>
-          Show Error Toast
-        </Button>
+        <Button onPress={() => toast.danger('Something went wrong.')}>Show Error Toast</Button>
       </div>
     </>
   ),
@@ -774,7 +766,8 @@ export const Default: StoryObj = {
       <Card.Header>
         <Card.Title>Building an accessible component library</Card.Title>
         <Card.Description>
-          Learn how to create reusable, accessible UI components using HeroUI React v3 and Tailwind CSS.
+          Learn how to create reusable, accessible UI components using HeroUI React v3 and Tailwind
+          CSS.
         </Card.Description>
       </Card.Header>
       <Card.Cta>Read article</Card.Cta>

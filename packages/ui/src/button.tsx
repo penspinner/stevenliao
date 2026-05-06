@@ -1,10 +1,26 @@
-import type { ComponentProps } from 'react'
 import { Button as HeroButton } from '@heroui/react'
+import type { ComponentProps } from 'react'
 
-type ButtonProps = Omit<ComponentProps<typeof HeroButton>, 'variant'> & {
-  variant?: 'primary' | 'secondary'
-}
+import { Spinner } from './spinner'
 
-export const Button = ({ variant = 'primary', ...props }: ButtonProps) => {
-  return <HeroButton variant={variant} {...props} />
+type ButtonProps = ComponentProps<typeof HeroButton>
+
+export const Button = ({ children, isPending, ...props }: ButtonProps) => {
+  return (
+    <HeroButton {...props} isPending={isPending}>
+      {typeof children === 'function' ? (
+        (...args) => (
+          <>
+            {isPending && <Spinner color="current" size="sm" />}
+            {children(...args)}
+          </>
+        )
+      ) : (
+        <>
+          {isPending && <Spinner color="current" size="sm" />}
+          {children}
+        </>
+      )}
+    </HeroButton>
+  )
 }
