@@ -40,3 +40,5 @@ tsconfig.tsbuildinfo
 .vite
 storybook-static
 .env*.local
+# heroui-agents-md
+.heroui-docs/
