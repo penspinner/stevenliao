@@ -43,7 +43,7 @@ export const WithError: StoryObj = {
 
 export const Disabled: StoryObj = {
   args: {
-    disabled: true,
+    isDisabled: true,
     defaultValue: 'user@example.com',
   },
   play: async ({ canvas }) => {
