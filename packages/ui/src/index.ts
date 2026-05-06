@@ -1,7 +1,6 @@
 export * from './container'
 export * from './button'
 export * from './card'
-export * from './indeterminate-progress'
 export * from './input'
 export * from './input-with-button-form'
 export * from './section'
