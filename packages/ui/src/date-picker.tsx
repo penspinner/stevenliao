@@ -1,220 +1,114 @@
 import {
-  CalendarIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ExclamationCircleIcon,
-} from '@heroicons/react/24/outline'
-import clsx from 'clsx'
-import * as React from 'react'
-import {
-  Button,
-  Calendar as AriaCalendar,
-  CalendarCell as AriaCalendarCell,
-  CalendarGrid,
-  CalendarGridBody,
-  CalendarGridHeader,
-  CalendarHeaderCell,
-  DateInput,
-  DatePicker as AriaDatePicker,
-  DateRangePicker as AriaDateRangePicker,
-  DateSegment,
-  Dialog,
-  Group,
-  Heading,
+  Calendar,
+  DateField,
+  DatePicker as HeroDatePicker,
+  DateRangePicker as HeroDateRangePicker,
   Label,
-  Popover,
-  RangeCalendar as AriaRangeCalendar,
-} from 'react-aria-components'
-import type {
-  DatePickerProps as AriaDatePickerProps,
-  DateRangePickerProps as AriaDateRangePickerProps,
-  DateValue,
-} from 'react-aria-components'
+  RangeCalendar,
+} from '@heroui/react'
+import type { ComponentProps } from 'react'
 
-export type DatePickerProps<T extends DateValue> = AriaDatePickerProps<T> & {
-  label?: React.ReactNode
-}
+export type DatePickerProps = ComponentProps<typeof HeroDatePicker>
 
-export const DatePicker = <T extends DateValue>({ label, ...props }: DatePickerProps<T>) => (
-  <AriaDatePicker {...props} className="relative inline-flex flex-col text-left">
-    {label && <Label className="text-sm text-gray-800">{label}</Label>}
-    <Group className="group flex text-sm">
-      <DateFieldContainer>
-        <DateInput className="flex">
-          {(segment) => <StyledDateSegment segment={segment} />}
-        </DateInput>
-        <ValidationIcon />
-      </DateFieldContainer>
-      <CalendarTrigger />
-    </Group>
-    <Popover className="z-10 rounded bg-white p-8 shadow-lg">
-      <Dialog>
-        <Calendar />
-      </Dialog>
-    </Popover>
-  </AriaDatePicker>
-)
-
-export type DateRangePickerProps<T extends DateValue> = AriaDateRangePickerProps<T> & {
-  label?: React.ReactNode
-}
-
-export const DateRangePicker = <T extends DateValue>({
+export const DatePicker = ({
   label,
   ...props
-}: DateRangePickerProps<T>) => (
-  <AriaDateRangePicker {...props} className="relative inline-flex flex-col space-y-2 text-left">
-    {label && <Label className="text-sm font-medium text-gray-700">{label}</Label>}
-    <Group className="flex text-sm">
-      <DateFieldContainer>
-        <DateInput slot="start" className="flex">
-          {(segment) => <StyledDateSegment segment={segment} />}
-        </DateInput>
-        <span aria-hidden="true" className="px-2">
-          –
-        </span>
-        <DateInput slot="end" className="flex">
-          {(segment) => <StyledDateSegment segment={segment} />}
-        </DateInput>
-        <ValidationIcon />
-      </DateFieldContainer>
-      <CalendarTrigger />
-    </Group>
-    <Popover className="z-10 rounded bg-white p-8 shadow-lg">
-      <Dialog>
-        <RangeCalendar />
-      </Dialog>
-    </Popover>
-  </AriaDateRangePicker>
+}: DatePickerProps & { label?: React.ReactNode }) => (
+  <HeroDatePicker {...props}>
+    {label && <Label>{label}</Label>}
+    <DateField.Group fullWidth>
+      <DateField.Input>
+        {(segment) => <DateField.Segment segment={segment} />}
+      </DateField.Input>
+      <DateField.Suffix>
+        <HeroDatePicker.Trigger>
+          <HeroDatePicker.TriggerIndicator />
+        </HeroDatePicker.Trigger>
+      </DateField.Suffix>
+    </DateField.Group>
+    <HeroDatePicker.Popover>
+      <Calendar aria-label="Event date">
+        <Calendar.Header>
+          <Calendar.YearPickerTrigger>
+            <Calendar.YearPickerTriggerHeading />
+            <Calendar.YearPickerTriggerIndicator />
+          </Calendar.YearPickerTrigger>
+          <Calendar.NavButton slot="previous" />
+          <Calendar.NavButton slot="next" />
+        </Calendar.Header>
+        <Calendar.Grid>
+          <Calendar.GridHeader>
+            {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+          </Calendar.GridHeader>
+          <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
+        </Calendar.Grid>
+        <Calendar.YearPickerGrid>
+          <Calendar.YearPickerGridBody>
+            {({ year }) => <Calendar.YearPickerCell year={year} />}
+          </Calendar.YearPickerGridBody>
+        </Calendar.YearPickerGrid>
+      </Calendar>
+    </HeroDatePicker.Popover>
+  </HeroDatePicker>
 )
 
-export type FieldDateRangePickerProps<T extends DateValue> = DateRangePickerProps<T> & {
+export type DateRangePickerProps = ComponentProps<typeof HeroDateRangePicker>
+
+export const DateRangePicker = ({
+  label,
+  ...props
+}: DateRangePickerProps & { label?: React.ReactNode }) => (
+  <HeroDateRangePicker {...props}>
+    {label && <Label>{label}</Label>}
+    <DateField.Group fullWidth>
+      <DateField.Input slot="start">
+        {(segment) => <DateField.Segment segment={segment} />}
+      </DateField.Input>
+      <HeroDateRangePicker.RangeSeparator />
+      <DateField.Input slot="end">
+        {(segment) => <DateField.Segment segment={segment} />}
+      </DateField.Input>
+      <DateField.Suffix>
+        <HeroDateRangePicker.Trigger>
+          <HeroDateRangePicker.TriggerIndicator />
+        </HeroDateRangePicker.Trigger>
+      </DateField.Suffix>
+    </DateField.Group>
+    <HeroDateRangePicker.Popover>
+      <RangeCalendar aria-label="Trip dates">
+        <RangeCalendar.Header>
+          <RangeCalendar.YearPickerTrigger>
+            <RangeCalendar.YearPickerTriggerHeading />
+            <RangeCalendar.YearPickerTriggerIndicator />
+          </RangeCalendar.YearPickerTrigger>
+          <RangeCalendar.NavButton slot="previous" />
+          <RangeCalendar.NavButton slot="next" />
+        </RangeCalendar.Header>
+        <RangeCalendar.Grid>
+          <RangeCalendar.GridHeader>
+            {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+          </RangeCalendar.GridHeader>
+          <RangeCalendar.GridBody>{(date) => <RangeCalendar.Cell date={date} />}</RangeCalendar.GridBody>
+        </RangeCalendar.Grid>
+        <RangeCalendar.YearPickerGrid>
+          <RangeCalendar.YearPickerGridBody>
+            {({ year }) => <RangeCalendar.YearPickerCell year={year} />}
+          </RangeCalendar.YearPickerGridBody>
+        </RangeCalendar.YearPickerGrid>
+      </RangeCalendar>
+    </HeroDateRangePicker.Popover>
+  </HeroDateRangePicker>
+)
+
+export type FieldDateRangePickerProps = DateRangePickerProps & {
   error?: string | string[]
 }
 
-export const FieldDateRangePicker = <T extends DateValue>({
+export const FieldDateRangePicker = ({
   error,
   ...props
-}: FieldDateRangePickerProps<T>) => (
+}: FieldDateRangePickerProps) => (
   <div className="space-y-2">
     <DateRangePicker {...props} />
   </div>
-)
-
-const DateFieldContainer = ({ children }: { children: React.ReactNode }) => (
-  <div className="relative flex rounded-l border border-gray-300 bg-white px-3 py-2 pr-10 focus-within:border-sky-500 focus-within:ring-1 focus-within:ring-sky-500">
-    {children}
-  </div>
-)
-
-const ValidationIcon = () => (
-  <ExclamationCircleIcon
-    aria-hidden="true"
-    className="invisible absolute right-1 h-6 w-6 text-red-500 group-data-[invalid]:visible"
-  />
-)
-
-const CalendarTrigger = () => (
-  <Button className="-ml-px rounded-r border border-gray-300 bg-gray-50 px-2 outline-none hover:bg-gray-100 focus-visible:z-10 focus-visible:border-sky-500 focus-visible:ring-1 focus-visible:ring-sky-500 active:border-gray-400 active:bg-gray-200">
-    <CalendarIcon className="h-5 w-5 text-gray-700" />
-  </Button>
-)
-
-const StyledDateSegment = ({
-  segment,
-}: {
-  segment: Parameters<NonNullable<React.ComponentProps<typeof DateInput>['children']>>[0]
-}) => (
-  <DateSegment
-    segment={segment}
-    className="group box-content rounded-sm px-0.5 text-right text-gray-800 tabular-nums outline-none focus:bg-sky-600 focus:text-white data-[placeholder]:text-gray-500 data-[placeholder]:italic data-[type=literal]:text-gray-500"
-  />
-)
-
-const Calendar = () => (
-  <AriaCalendar className="inline-block space-y-4 text-gray-800">
-    <CalendarHeader />
-    <CalendarGrid>
-      <CalendarGridHeader>
-        {(day) => (
-          <CalendarHeaderCell className="text-center text-gray-600">{day}</CalendarHeaderCell>
-        )}
-      </CalendarGridHeader>
-      <CalendarGridBody>{(date) => <CalendarCell date={date} />}</CalendarGridBody>
-    </CalendarGrid>
-  </AriaCalendar>
-)
-
-const RangeCalendar = () => (
-  <AriaRangeCalendar className="inline-block space-y-4 text-gray-800">
-    <CalendarHeader />
-    <CalendarGrid>
-      <CalendarGridHeader>
-        {(day) => (
-          <CalendarHeaderCell className="text-center text-gray-600">{day}</CalendarHeaderCell>
-        )}
-      </CalendarGridHeader>
-      <CalendarGridBody>{(date) => <CalendarCell date={date} />}</CalendarGridBody>
-    </CalendarGrid>
-  </AriaRangeCalendar>
-)
-
-const CalendarHeader = () => (
-  <header className="flex items-center">
-    <Heading className="ml-2 flex-1 text-lg font-bold" />
-    <CalendarNavButton slot="previous">
-      <ChevronLeftIcon className="h-6 w-6" />
-    </CalendarNavButton>
-    <CalendarNavButton slot="next">
-      <ChevronRightIcon className="h-6 w-6" />
-    </CalendarNavButton>
-  </header>
-)
-
-const CalendarNavButton = ({
-  slot,
-  children,
-}: {
-  slot: 'previous' | 'next'
-  children: React.ReactNode
-}) => (
-  <Button
-    slot={slot}
-    className="rounded-full p-2 outline-none hover:bg-sky-100 focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-2 active:bg-sky-200 disabled:text-gray-400 disabled:hover:bg-transparent"
-  >
-    {children}
-  </Button>
-)
-
-type CalendarCellProps = React.ComponentProps<typeof AriaCalendarCell>
-
-const CalendarCell = (props: CalendarCellProps) => (
-  <AriaCalendarCell
-    {...props}
-    className={({
-      isSelected,
-      isFocusVisible,
-      isOutsideMonth,
-      isDisabled,
-      isInvalid,
-      isSelectionStart,
-      isSelectionEnd,
-    }) =>
-      clsx(
-        'group box-content flex h-10 w-10 cursor-default items-center justify-center rounded-full text-sm outline-none',
-        isOutsideMonth && 'invisible',
-        isDisabled && !isInvalid && 'text-gray-400',
-        isFocusVisible && 'ring-2 ring-sky-600 ring-offset-2',
-        isSelected && !isInvalid && !isSelectionStart && !isSelectionEnd && 'bg-sky-300',
-        isSelected && isInvalid && !isSelectionStart && !isSelectionEnd && 'bg-red-300',
-        (isSelectionStart || isSelectionEnd) &&
-          !isInvalid &&
-          'bg-sky-600 text-white hover:bg-sky-700',
-        (isSelectionStart || isSelectionEnd) &&
-          isInvalid &&
-          'bg-red-600 text-white hover:bg-red-700',
-        !isSelected && !isDisabled && 'hover:bg-sky-100',
-      )
-    }
-  />
 )
