@@ -26,7 +26,7 @@ export const Primary: Story = {
 
 export const Loading: Story = {
   args: {
-    loading: true,
+    isPending: true,
   },
   play: async ({ canvas }) => {
     const button = canvas.getByRole('button')
