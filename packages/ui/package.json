@@ -17,9 +17,10 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@heroui/react": "^3.0.3",
+    "@heroui/styles": "^3.0.3",
     "clsx": "^2.1.1",
-    "react": "^19.2.5",
-    "react-aria-components": "^1.13.0"
+    "react": "^19.2.5"
   },
   "devDependencies": {
     "@internationalized/date": "^3.12.1",
