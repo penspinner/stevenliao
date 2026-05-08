@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "next build",
     "check:ts": "tsc --noEmit",
     "dev": "next dev",
-    "build": "next build",
     "start": "next start"
   },
   "dependencies": {

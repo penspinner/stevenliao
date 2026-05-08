@@ -8,11 +8,11 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "check:fmt": "oxfmt --check .",
+    "check:lint": "oxlint",
+    "check:ts": "turbo run check:ts",
     "dev:next": "turbo run dev watch --filter app-next --filter personal-site",
     "dev:react-router": "turbo run dev watch --filter app-react-router --filter personal-site",
-    "check:lint": "oxlint",
-    "check:fmt": "oxfmt --check .",
-    "check:ts": "turbo run check:ts",
     "fmt": "oxfmt .",
     "typegen": "turbo run typegen"
   },

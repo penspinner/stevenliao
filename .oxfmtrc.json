@@ -6,6 +6,9 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "sortImports": true,
+  "sortPackageJson": {
+    "sortScripts": true
+  },
   "sortTailwindcss": true,
   "ignorePatterns": [
     "**/dist/**",
