@@ -23,6 +23,7 @@ bun dev:react-router         # turbo dev for app-react-router + personal-site wa
 bun check:fmt                # oxfmt --check .
 bun check:lint               # oxlint (type-aware via config)
 bun fmt                      # oxfmt . (write)
+bun lint-staged               # check staged files (runs oxfmt --check + oxlint)
 ```
 
 Single workspace: `bun --filter <name> <script>` (e.g. `bun --filter personal-site watch` to rebuild on change).
@@ -71,6 +72,8 @@ Codified in [.oxlintrc.json](.oxlintrc.json):
 Format ([.oxfmtrc.json](.oxfmtrc.json)): no semicolons, single quotes, 100-col print width, trailing commas everywhere, Tailwind class sorting on (replaces `prettier-plugin-tailwindcss`).
 
 Run `bun fmt` after every batch of file edits.
+
+Pre-commit: Husky runs `lint-staged` (`.husky/pre-commit` -> `bun lint-staged`), which runs `oxfmt --check` on all files and `oxlint` on `*.{ts,tsx}` via [.lintstagedrc.json](.lintstagedrc.json).
 
 ## Known sharp edges
 

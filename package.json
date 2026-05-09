@@ -13,10 +13,13 @@
     "dev:next": "turbo run dev watch --filter app-next --filter personal-site",
     "dev:react-router": "turbo run dev watch --filter app-react-router --filter personal-site",
     "fmt": "oxfmt .",
+    "prepare": "husky",
     "typegen": "turbo run typegen"
   },
   "devDependencies": {
     "@types/node": "^25.6.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.3",
     "oxfmt": "^0.48.0",
     "oxlint": "^1.63.0",
     "oxlint-tsgolint": "^0.22.1",

@@ -1,0 +1,4 @@
+{
+  "*": "oxfmt --check",
+  "*.{ts,tsx}": "oxlint"
+}
