@@ -71,6 +71,8 @@ Codified in [.oxlintrc.json](.oxlintrc.json):
 
 Format ([.oxfmtrc.json](.oxfmtrc.json)): no semicolons, single quotes, 100-col print width, trailing commas everywhere, Tailwind class sorting on (replaces `prettier-plugin-tailwindcss`).
 
+Run `bun fmt` after every batch of file edits.
+
 ## Known sharp edges
 
 - **tsdown + ignoreDeprecations**: The `ignoreDeprecations: "6.0"` was removed from both `packages/personal-site/tsconfig.json` and `packages/ui/tsconfig.json` during the tsup→tsdown migration. tsdown uses oxc for DTS generation and shouldn't need it. If `tsc --noEmit` starts showing TS 6 deprecation warnings, add it back to the affected tsconfig only.
