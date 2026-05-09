@@ -17,29 +17,29 @@
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.3.0",
-    "@react-router/fs-routes": "^7.14.2",
-    "@react-router/node": "^7.14.2",
-    "@react-router/serve": "^7.14.2",
+    "@react-router/fs-routes": "^7.15.0",
+    "@react-router/node": "^7.15.0",
+    "@react-router/serve": "^7.15.0",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.2.4",
+    "@tailwindcss/vite": "^4.3.0",
     "@vercel/react-router": "^1.2.6",
-    "isbot": "^5.1.39",
+    "isbot": "^5.1.40",
     "personal-site": "workspace:*",
-    "react": "^19.2.5",
+    "react": "^19.2.6",
     "react-aria-components": "^1.17.0",
-    "react-dom": "^19.2.5",
-    "react-router": "^7.14.2",
-    "tailwindcss": "^4.2.4"
+    "react-dom": "^19.2.6",
+    "react-router": "^7.15.0",
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
     "@react-aria/optimize-locales-plugin": "^1.2.0",
-    "@react-router/dev": "^7.14.2",
+    "@react-router/dev": "^7.15.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/set-cookie-parser": "^2.4.10",
     "tsconfig": "workspace:*",
     "types": "workspace:*",
     "typescript": "^6.0.3",
-    "vite": "^8.0.10"
+    "vite": "^8.0.11"
   }
 }

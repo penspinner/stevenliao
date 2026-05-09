@@ -17,12 +17,12 @@
     "typegen": "turbo run typegen"
   },
   "devDependencies": {
-    "@types/node": "^25.6.0",
-    "oxfmt": "^0.47.0",
-    "oxlint": "^1.62.0",
+    "@types/node": "^25.6.2",
+    "oxfmt": "^0.48.0",
+    "oxlint": "^1.63.0",
     "oxlint-tsgolint": "^0.22.1",
     "tsconfig": "workspace:*",
-    "turbo": "^2.9.7"
+    "turbo": "^2.9.12"
   },
   "engines": {
     "bun": ">=1.3"
