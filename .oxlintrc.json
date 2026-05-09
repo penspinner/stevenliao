@@ -61,7 +61,12 @@
       }
     },
     {
-      "files": ["apps/app-react-router/**/*", "packages/personal-site/**/*", "packages/ui/**/*"],
+      "files": [
+        "apps/app-tanstack-react-start/**/*",
+        "apps/app-react-router/**/*",
+        "packages/personal-site/**/*",
+        "packages/ui/**/*"
+      ],
       "rules": {
         "nextjs/no-img-element": "off",
         "nextjs/no-html-link-for-pages": "off",
@@ -79,6 +84,25 @@
       "rules": {
         "typescript/no-non-null-assertion": "off"
       }
+    },
+    {
+      "files": [
+        "apps/app-tanstack-react-start/src/routes/**/*",
+        "apps/app-tanstack-react-start/src/router.tsx",
+        "apps/app-tanstack-react-start/vite.config.ts"
+      ],
+      "rules": {
+        "import/no-default-export": "off",
+        "nextjs/no-img-element": "off",
+        "nextjs/no-html-link-for-pages": "off",
+        "nextjs/no-head-element": "off"
+      }
+    },
+    {
+      "files": ["apps/app-tanstack-react-start/src/routes/**/*"],
+      "rules": {
+        "unicorn/filename-case": ["error", { "cases": { "camelCase": true, "kebabCase": true } }]
+      }
     }
   ],
   "ignorePatterns": [
@@ -91,6 +115,7 @@
     "**/.turbo/**",
     "**/.react-router/**",
     "**/storybook-static/**",
-    "**/node_modules/**"
+    "**/node_modules/**",
+    ".tanstack/**"
   ]
 }

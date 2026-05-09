@@ -14,3 +14,4 @@ export {
 export { getArticles } from './src/lib/get-articles'
 export type { Article } from './src/lib/get-articles'
 export type { ColorScheme } from './src/types'
+export { isColorScheme } from './src/lib/color-scheme'

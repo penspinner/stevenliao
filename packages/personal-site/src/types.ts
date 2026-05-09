@@ -1,1 +1,1 @@
-export type ColorScheme = 'dark' | 'light' | 'system' | (string & {})
+export type ColorScheme = 'dark' | 'light' | 'system'

@@ -3,7 +3,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "build/**", "public/build/**"]
+      "outputs": ["dist/**", ".next/**", "build/**", "public/build/**", ".output/**"]
     },
     "typegen": {
       "outputs": [".react-router/types/**"]

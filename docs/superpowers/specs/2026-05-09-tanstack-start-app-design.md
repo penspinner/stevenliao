@@ -144,7 +144,7 @@ Extends `tsconfig/base.json`. Overrides:
 
 ## Turborepo integration
 
-Add to `turbo.json` — `build` task with `dependsOn: ["^build"]`, outputs including `dist/**`. Add `dev` and `watch` tasks (cached: false, persistent: true). Add root `dev:tanstack` script:
+Add to `turbo.json` — `build` task with `dependsOn: ["^build"]`, outputs including `dist/**`. Add `dev` and `watch` tasks (cached: false, persistent: true). Add root `dev:trs` script:
 
 ```sh
 turbo run dev watch --filter app-tanstack-react-start --filter personal-site

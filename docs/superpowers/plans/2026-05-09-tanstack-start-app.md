@@ -615,12 +615,12 @@ function UsesPage() {
 
 Read the current `turbo.json`. Under `"build"` → `"outputs"`, ensure `"dist/**"` is present (it already is). No changes needed to the build task itself — the new app inherits the same `build` task via workspace conventions.
 
-- [ ] **Step 2: Add dev:tanstack script to root package.json**
+- [ ] **Step 2: Add dev:trs script to root package.json**
 
 In the root `package.json`, add to `"scripts"`:
 
 ```json
-"dev:tanstack": "turbo run dev watch --filter app-tanstack-react-start --filter personal-site"
+"dev:trs": "turbo run dev watch --filter app-tanstack-react-start --filter personal-site"
 ```
 
 The edited scripts section should look like:
@@ -632,7 +632,7 @@ The edited scripts section should look like:
   "check:lint": "oxlint",
   "dev:next": "turbo run dev watch --filter app-next --filter personal-site",
   "dev:react-router": "turbo run dev watch --filter app-react-router --filter personal-site",
-  "dev:tanstack": "turbo run dev watch --filter app-tanstack-react-start --filter personal-site",
+  "dev:trs": "turbo run dev watch --filter app-tanstack-react-start --filter personal-site",
   "fmt": "oxfmt .",
   "prepare": "husky",
   "typegen": "turbo run typegen"

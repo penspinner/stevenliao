@@ -1,0 +1,34 @@
+{
+  "name": "app-tanstack-react-start",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "imports": {
+    "#utils": "./src/utils/index.ts"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite dev"
+  },
+  "dependencies": {
+    "@badrap/bar-of-progress": "^0.3.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.3.0",
+    "@tanstack/react-router": "^1.169.2",
+    "@tanstack/react-start": "^1.167.65",
+    "nitro": "^3.0.260429-beta",
+    "personal-site": "workspace:*",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@react-aria/optimize-locales-plugin": "^1.2.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "tsconfig": "workspace:*",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.11"
+  }
+}
