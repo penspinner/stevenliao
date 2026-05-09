@@ -5,9 +5,6 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "build/**", "public/build/**"]
     },
-    "check:ts": {
-      "dependsOn": ["^build"]
-    },
     "typegen": {
       "outputs": [".react-router/types/**"]
     },

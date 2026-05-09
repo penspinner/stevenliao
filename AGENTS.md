@@ -22,7 +22,6 @@ bun dev:next                 # turbo dev for app-next + personal-site watch
 bun dev:react-router         # turbo dev for app-react-router + personal-site watch
 bun check:fmt                # oxfmt --check .
 bun check:lint               # oxlint (type-aware via config)
-bun check:ts                 # turbo: tsc --noEmit across workspaces (RR app also runs `react-router typegen`)
 bun fmt                      # oxfmt . (write)
 ```
 
@@ -37,7 +36,7 @@ Single workspace: `bun --filter <name> <script>` (e.g. `bun --filter personal-si
   - `personal-site/client` — `Layout` component (uses `framer-motion`, must hydrate). **`client.ts` deliberately has no `'use client'` directive** — the consuming Next files mark themselves `'use client'` instead. Adding it back here breaks SSR in React Router v7 (the directive is interpreted as an RSC client boundary, exposing keys but `undefined` values on the server).
 - `packages/personal-site/tailwind.css` — shared CSS, imported by both apps. Uses Tailwind v4 CSS-native configuration (`@plugin`, `@theme`, `@keyframes` — no JS config). `app-react-router` maintains a local copy at `app/css/tailwind.css` with a `@source` pointing at `personal-site`.
 - `packages/tsconfig` — base/nextjs/react-library/react-router tsconfig presets.
-- `packages/ui`, `packages/big-deuce`, `packages/playing-cards`, `packages/types` — extra workspaces, not currently consumed by the apps. `packages/ui` provides reusable components built on `react-aria-components` (ListBox, Modal, Toast, etc.).
+- `packages/ui`, `packages/big-deuce`, `packages/playing-cards`, `packages/types` — extra workspaces, not currently consumed by the apps. `packages/ui` provides reusable components built on HeroUI React v3.
 
 ### App-next specifics
 
@@ -56,7 +55,7 @@ Single workspace: `bun --filter <name> <script>` (e.g. `bun --filter personal-si
 
 ### Build pipeline (Turborepo)
 
-- `personal-site` builds first (it's a dep of both apps); the apps' build / typecheck wait on `^build` to produce `dist/`.
+- `personal-site` builds first (it's a dep of both apps); the apps' build waits on `^build` to produce `dist/`.
 - Outputs cached by turbo: `dist/**`, `.next/**`, `build/**`, `public/build/**`.
 - Dev/watch tasks have `cache: false` and `persistent: true`.
 
@@ -75,7 +74,7 @@ Run `bun fmt` after every batch of file edits.
 
 ## Known sharp edges
 
-- **tsdown + ignoreDeprecations**: The `ignoreDeprecations: "6.0"` was removed from both `packages/personal-site/tsconfig.json` and `packages/ui/tsconfig.json` during the tsup→tsdown migration. tsdown uses oxc for DTS generation and shouldn't need it. If `tsc --noEmit` starts showing TS 6 deprecation warnings, add it back to the affected tsconfig only.
+- **tsdown + ignoreDeprecations**: The `ignoreDeprecations: "6.0"` was removed from both `packages/personal-site/tsconfig.json` and `packages/ui/tsconfig.json` during the tsup→tsdown migration. tsdown uses oxc for DTS generation and shouldn't need it.
 - **Path aliases**: Uses Node.js `package.json#imports` with `#` prefix (e.g. `import { Foo } from '#components/foo'`) instead of TypeScript `paths`. TypeScript resolves these automatically via `moduleResolution: "Bundler"`.
 - **`@vercel/react-router` warning during typegen/build**: `WARN: The @vercel/react-router package was not detected in your "entry.server.tsx" file.` The preset's source-text scanner doesn't recognize the current import shape, but the edge bundle still builds correctly. Cosmetic.
 - **RAC `UNSTABLE_Toast*` components**: React Aria Components v1.13 exports Toast components with an `UNSTABLE_` prefix (`UNSTABLE_Toast`, `UNSTABLE_ToastRegion`, `UNSTABLE_ToastQueue`, `UNSTABLE_ToastContent`). They are imported from the main `react-aria-components` entry. The API is stable in practice but the prefix indicates the surface may still evolve.

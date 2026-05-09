@@ -14,6 +14,5 @@ bun dev:react-router   # start React Router dev server + watch package build
 bun run build          # build all packages and apps
 bun check:lint         # lint
 bun check:fmt          # format check
-bun check:ts           # type check
 bun fmt                # format write
 ```
