@@ -1,6 +1,6 @@
 {
   "extends": "tsconfig/base.json",
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "packages/ui/.storybook/types.d.ts"],
   "references": [
     {
       "path": "apps/app-react-router"

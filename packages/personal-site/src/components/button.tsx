@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 
 const variantStyles = {
   primary:
@@ -8,17 +8,20 @@ const variantStyles = {
 }
 
 export const Button = ({
-  variant = 'primary',
   className,
+  variant = 'primary',
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: keyof typeof variantStyles
 }) => {
-  className = clsx(
-    'inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none',
-    variantStyles[variant],
-    className,
+  return (
+    <button
+      {...props}
+      className={clsx(
+        'inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none',
+        variantStyles[variant],
+        className,
+      )}
+    />
   )
-
-  return <button className={className} {...props} />
 }

@@ -2,7 +2,7 @@ import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 
 import { Container } from './components/container'
 
-type ErrorBoundaryProps = {
+interface ErrorBoundaryProps {
   thrown: unknown
 }
 

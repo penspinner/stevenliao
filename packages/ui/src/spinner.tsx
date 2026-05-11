@@ -1,5 +1,5 @@
 import { Spinner as HeroSpinner } from '@heroui/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import type { ComponentProps } from 'react'
 
 type SpinnerProps = ComponentProps<typeof HeroSpinner>

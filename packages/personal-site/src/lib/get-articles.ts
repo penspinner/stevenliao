@@ -40,7 +40,19 @@ const exampleArticle = {
 
 export type Article = typeof exampleArticle
 
-export const getArticles = (options: { username: string; page?: string; per_page?: string }) => {
+export const getArticles = async (options: {
+  username: string
+  page?: string
+  per_page?: string
+}) => {
   const searchParams = new URLSearchParams(options).toString()
-  return fetch(`https://dev.to/api/articles?${searchParams}`)
+
+  try {
+    const articlesReponse = await fetch(`https://dev.to/api/articles?${searchParams}`)
+    // oxlint-disable-next-line typescript/no-unsafe-assignment
+    const articles: Article[] = await articlesReponse.json()
+    return { data: articles }
+  } catch (error) {
+    return { error }
+  }
 }

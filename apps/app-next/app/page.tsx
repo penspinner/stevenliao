@@ -8,13 +8,12 @@ export const metadata = {
 }
 
 const IndexPage = async () => {
-  const resp = await getArticles({
+  const articlesResult = await getArticles({
     username: '2ezpz2plzme',
     page: '1',
     per_page: '3',
   })
-  const articles = await resp.json()
-  return <IndexPageComponent articles={articles} />
+  return <IndexPageComponent articles={articlesResult.data ?? []} />
 }
 
 export default IndexPage

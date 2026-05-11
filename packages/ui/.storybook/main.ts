@@ -9,9 +9,9 @@ const config: StorybookConfig = {
     options: {},
   },
 
-  async viteFinal(config) {
+  async viteFinal(viteFinalConfig) {
     const { mergeConfig } = await import('vite')
-    return mergeConfig(config, {
+    return mergeConfig(viteFinalConfig, {
       plugins: [tailwindcss()],
     })
   },

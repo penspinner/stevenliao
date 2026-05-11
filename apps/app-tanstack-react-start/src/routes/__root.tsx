@@ -1,14 +1,14 @@
 import ProgressBar from '@badrap/bar-of-progress'
 import {
-  createRootRoute,
   HeadContent,
   Link,
   Outlet,
   Scripts,
+  createRootRoute,
   useRouter,
 } from '@tanstack/react-router'
 import type { ColorScheme } from 'personal-site'
-import { Document as Doc, isColorScheme, RootErrorBoundary, RootNotFound } from 'personal-site'
+import { Document, RootErrorBoundary, RootNotFound, isColorScheme } from 'personal-site'
 import { Layout as PageLayout } from 'personal-site/client'
 import * as React from 'react'
 
@@ -39,7 +39,7 @@ export const Route = createRootRoute({
       { rel: 'stylesheet', href: fontCSSHref },
     ],
     meta: [
-      { charSet: 'utf-8' },
+      { charSet: 'utf8' },
       { name: 'viewport', content: 'width=device-width,initial-scale=1' },
     ],
   }),
@@ -54,7 +54,7 @@ export const Route = createRootRoute({
 function Root() {
   const router = useRouter()
   const { colorScheme } = Route.useLoaderData()
-  const pathname = router.state.location.pathname
+  const { pathname } = router.state.location
   const [optimisticColorScheme, setOptimisticColorScheme] = React.useState<ColorScheme | null>(null)
 
   const effectiveColorScheme = optimisticColorScheme ?? colorScheme
@@ -68,78 +68,65 @@ function Root() {
   }, [router.state.isLoading])
 
   return (
-    <Document colorScheme={effectiveColorScheme}>
-      <PageLayout
-        avatarImg={<img src="/images/logo.png" alt="" />}
-        colorScheme={effectiveColorScheme}
-        colorSchemeToggleRender={({ children }) => (
-          <form
-            onSubmit={async (e) => {
-              e.preventDefault()
-              const form = e.currentTarget
-              const formData = new FormData(form, e.nativeEvent.submitter)
-              const newColorScheme = formData.get('colorScheme')
-              if (!isColorScheme(newColorScheme)) {
-                throw new Error(`Invalid color scheme: ${JSON.stringify(newColorScheme)}`)
-              }
-              setOptimisticColorScheme(newColorScheme)
-              await updateColorScheme({ data: newColorScheme })
-            }}
+    <Document
+      colorScheme={effectiveColorScheme}
+      head={<HeadContent />}
+      body={
+        <>
+          <PageLayout
+            avatarImg={<img src="/images/logo.png" alt="" />}
+            colorScheme={effectiveColorScheme}
+            colorSchemeToggleRender={({ children }) => (
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault()
+                  const form = event.currentTarget
+                  const formData = new FormData(form, event.nativeEvent.submitter)
+                  const newColorScheme = formData.get('colorScheme')
+                  if (!isColorScheme(newColorScheme)) {
+                    throw new Error(`Invalid color scheme: ${JSON.stringify(newColorScheme)}`)
+                  }
+                  setOptimisticColorScheme(newColorScheme)
+                  void updateColorScheme({ data: newColorScheme })
+                }}
+              >
+                {children}
+              </form>
+            )}
+            currentPathname={pathname}
+            linkRender={({ href, ...props }) => (
+              <Link preload="intent" to={href ?? ''} {...props} />
+            )}
           >
-            {children}
-          </form>
-        )}
-        currentPathname={pathname}
-        linkRender={({ href, ...props }) => <Link preload="intent" to={href ?? ''} {...props} />}
-      >
-        <Outlet />
-      </PageLayout>
-    </Document>
+            <Outlet />
+          </PageLayout>
+          <Scripts />
+        </>
+      }
+    />
   )
 }
 
 function RootError({ error }: { error: unknown }) {
   const router = useRouter()
-  const pathname = router.state.location.pathname
+  const { pathname } = router.state.location
   const is404 =
     typeof error === 'object' && error !== null && 'status' in error && error.status === 404
 
   const errorContent = is404 ? <RootNotFound /> : <RootErrorBoundary thrown={error} />
 
   return (
-    <Document colorScheme="system">
-      <PageLayout
-        avatarImg={<img src="/images/logo.png" alt="" />}
-        colorScheme="system"
-        currentPathname={pathname}
-        linkRender={({ href, ...props }) => <Link preload="intent" to={href ?? ''} {...props} />}
-      >
-        <main className="relative">{errorContent}</main>
-      </PageLayout>
-    </Document>
-  )
-}
-
-function Document({
-  children,
-  colorScheme,
-}: {
-  children: React.ReactNode
-  colorScheme: ColorScheme
-}) {
-  return (
-    <Doc
-      colorScheme={colorScheme}
-      head={
-        <>
-          <HeadContent />
-        </>
-      }
+    <Document
+      colorScheme="system"
       body={
-        <>
-          {children}
-          <Scripts />
-        </>
+        <PageLayout
+          avatarImg={<img src="/images/logo.png" alt="" />}
+          colorScheme="system"
+          currentPathname={pathname}
+          linkRender={({ href, ...props }) => <Link preload="intent" to={href ?? ''} {...props} />}
+        >
+          <main className="relative">{errorContent}</main>
+        </PageLayout>
       }
     />
   )

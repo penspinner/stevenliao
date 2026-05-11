@@ -1,12 +1,11 @@
-import type { Article } from 'personal-site'
 import {
-  getArticles,
   Index,
+  PaddedErrorBoundary,
+  getArticles,
   indexDescription,
   indexTitle,
-  PaddedErrorBoundary,
 } from 'personal-site'
-import { useLoaderData, useRouteError } from 'react-router'
+import { data, useLoaderData, useRouteError } from 'react-router'
 
 import { createCacheControlHeaders } from '#utils'
 
@@ -17,23 +16,24 @@ export const meta: Route.MetaFunction = () => {
 }
 
 export const loader = async () => {
-  const articles: Article[] = await (
-    await getArticles({
-      username: '2ezpz2plzme',
-      page: '1',
-      per_page: '3',
-    })
-  ).json()
-  return new Response(JSON.stringify({ articles }), {
-    headers: {
-      'Content-Type': 'application/json',
-      ...createCacheControlHeaders({ visibility: 'public', maxage: 900 }),
-    },
+  const articlesResult = await getArticles({
+    username: '2ezpz2plzme',
+    page: '1',
+    per_page: '3',
   })
+  return data(
+    { articles: articlesResult.data ?? [] },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        ...createCacheControlHeaders({ visibility: 'public', maxage: 900 }),
+      },
+    },
+  )
 }
 
 const IndexPage = () => {
-  const { articles } = useLoaderData<{ articles: Article[] }>()
+  const { articles } = useLoaderData<typeof loader>()
   return (
     <Index
       articles={articles}

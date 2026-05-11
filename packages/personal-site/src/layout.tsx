@@ -1,11 +1,10 @@
 import { Cog8ToothIcon } from '@heroicons/react/24/outline'
 import { Slot } from '@radix-ui/react-slot'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 import * as React from 'react'
 
-import { Container } from './components/container'
-import { InnerContainer, OuterContainer } from './components/container'
+import { Container, InnerContainer, OuterContainer } from './components/container'
 import { Menu, MenuButton, MenuItem } from './components/menu'
 import type { ColorScheme } from './types'
 
@@ -41,7 +40,7 @@ const Header = ({
   colorScheme,
   colorSchemeToggleRender,
   currentPathname,
-  // eslint-disable-next-line jsx-a11y/anchor-has-content
+  // oxlint-disable-next-line jsx-a11y/anchor-has-content
   linkRender = (props) => <a {...props} />,
 }: {
   avatarImg?: React.ReactElement
@@ -84,8 +83,8 @@ const MobileNavItem = ({
   href,
   children,
   currentPathname,
-  linkRender = ({ children: linkChildren, className, href }) => (
-    <a className={className} href={href}>
+  linkRender = ({ children: linkChildren, className, href: propsHref }) => (
+    <a className={className} href={propsHref}>
       {children}
       {linkChildren}
     </a>
@@ -148,8 +147,8 @@ const NavItem = ({
   href,
   currentPathname,
   children,
-  linkRender = ({ children: linkChildren, className, href, ...props }) => (
-    <a className={className} href={href} {...props}>
+  linkRender = ({ children: linkChildren, className, href: propsHref, ...props }) => (
+    <a className={className} href={propsHref} {...props}>
       {children}
       {linkChildren}
     </a>
@@ -230,7 +229,6 @@ const Avatar = ({
 }: {
   className?: string
   img?: React.ReactElement
-  large?: boolean
   linkRender: LinkRender
   style?: React.CSSProperties
 }) => {
@@ -238,22 +236,17 @@ const Avatar = ({
     href: '/',
     'aria-label': 'Home',
     className: 'pointer-events-auto rounded-full outline-none',
-    children: <Img asChild={!!img}>{img}</Img>,
+    children: <Img>{img}</Img>,
     ...props,
   })
 }
 
-const Img = ({
-  asChild,
-  ...props
-}: React.ImgHTMLAttributes<HTMLImageElement> & { asChild?: boolean; large?: boolean }) => {
-  const Component = asChild ? Slot : 'img'
+const Img = ({ children }: { children?: React.ReactElement }) => {
+  const Component = children ? Slot : 'img'
   return (
-    <Component
-      {...props}
-      alt=""
-      className="rounded-full bg-zinc-100 object-cover dark:bg-zinc-800"
-    />
+    <Component alt="" className="rounded-full bg-zinc-100 object-cover dark:bg-zinc-800">
+      {children}
+    </Component>
   )
 }
 
@@ -373,7 +366,7 @@ const Link = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
 }
 
 const Footer = ({
-  // eslint-disable-next-line jsx-a11y/anchor-has-content
+  // oxlint-disable-next-line jsx-a11y/anchor-has-content
   linkRender = (props) => <a {...props} />,
 }: {
   linkRender?: LinkRender

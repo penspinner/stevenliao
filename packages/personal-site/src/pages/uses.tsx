@@ -21,12 +21,12 @@ export const Uses = () => {
             This ultra-wide monitor can comfortably split screen without windows feeling squished.
             It&apos;s almost like two monitors in one.
           </Tool>
-          <Tool title="Random Ergonomic Mesh Chair"></Tool>
+          <Tool title="Random Ergonomic Mesh Chair" />
         </ToolsSection>
         <ToolsSection title="Development tools">
-          <Tool href="https://code.visualstudio.com/" title="Visual Studio Code"></Tool>
-          <Tool title="Warp"></Tool>
-          <Tool title="Git"></Tool>
+          <Tool href="https://code.visualstudio.com/" title="Visual Studio Code" />
+          <Tool title="Warp" />
+          <Tool title="Git" />
         </ToolsSection>
         <ToolsSection title="Productivity">
           <Tool title="Raycast">

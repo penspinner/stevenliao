@@ -8,7 +8,6 @@ import {
   ToastTitle,
   toast,
 } from '@heroui/react'
-import type { ToastContentValue } from '@heroui/react'
 
 export { toast }
 
@@ -16,22 +15,17 @@ export const ToastProvider = () => {
   return (
     <Toast.Provider placement="bottom end">
       {({ toast: toastItem }) => {
-        const content = toastItem.content as ToastContentValue & {
-          type?: 'success' | 'error'
-          description?: string
-        }
-
         return (
           <Toast
             toast={toastItem}
             className="ring-opacity-5 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black"
           >
             <div className="flex items-start gap-x-3 p-4">
-              {content.type === 'success' ? (
+              {toastItem.content.variant === 'success' ? (
                 <div className="shrink-0">
                   <CheckCircleIcon className="h-6 w-6 text-green-400" aria-hidden="true" />
                 </div>
-              ) : content.type === 'error' ? (
+              ) : toastItem.content.variant === 'danger' ? (
                 <div className="shrink-0">
                   <XCircleIcon className="h-6 w-6 text-red-400" aria-hidden="true" />
                 </div>
@@ -40,16 +34,16 @@ export const ToastProvider = () => {
               )}
               <div className="w-0 flex-1">
                 <ToastContent>
-                  {content.title ? (
+                  {toastItem.content.title != null && (
                     <ToastTitle className="text-sm font-medium text-gray-900">
-                      {content.title}
+                      {toastItem.content.title}
                     </ToastTitle>
-                  ) : null}
-                  {content.description ? (
+                  )}
+                  {toastItem.content.description != null && (
                     <ToastDescription className="text-sm text-gray-500">
-                      {content.description}
+                      {toastItem.content.description}
                     </ToastDescription>
-                  ) : null}
+                  )}
                 </ToastContent>
               </div>
               <div className="flex shrink-0">

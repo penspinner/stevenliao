@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent } from 'storybook/test'
 
-import { FieldInput, type FieldInputProps } from './input'
+import { FieldInput } from './input'
+import type { FieldInputProps } from './input'
 
 const meta = {
   component: FieldInput,

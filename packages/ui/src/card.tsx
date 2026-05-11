@@ -1,5 +1,5 @@
 import { Badge, Card as HeroCard, Link } from '@heroui/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import type { ComponentProps } from 'react'
 
 export const Card = ({ children, className, ...props }: ComponentProps<typeof HeroCard>) => {

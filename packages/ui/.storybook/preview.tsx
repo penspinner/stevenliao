@@ -1,5 +1,6 @@
+/// <reference types="./types.d.ts" />
 import type { Preview } from '@storybook/react-vite'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useEffect } from 'react'
 
 import './tailwind.css'
@@ -8,8 +9,8 @@ const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/,
+        color: /(background|color)$/iu,
+        date: /Date$/u,
       },
     },
   },

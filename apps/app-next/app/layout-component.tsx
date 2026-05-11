@@ -9,6 +9,7 @@ import { Document } from 'personal-site'
 import { Layout } from 'personal-site/client'
 import * as React from 'react'
 
+// oxlint-disable-next-line new-cap
 const inter = Inter({
   display: 'swap',
   subsets: ['latin'],
@@ -36,18 +37,17 @@ export const RootLayoutComponent = ({
             />
           }
           colorScheme={colorScheme}
-          // TODO: how to best do color scheme here?
-          colorSchemeToggleRender={({ children }) => (
+          colorSchemeToggleRender={({ children: colorSchemeChildren }) => (
             <form
               action="/color-scheme"
               method="POST"
-              onSubmit={async (e) => {
-                e.preventDefault()
-                const form = e.currentTarget
-                await fetch(form.action, { method: form.method })
+              onSubmit={(event) => {
+                event.preventDefault()
+                const form = event.currentTarget
+                void fetch(form.action, { method: form.method })
               }}
             >
-              {children}
+              {colorSchemeChildren}
             </form>
           )}
           currentPathname={pathname}

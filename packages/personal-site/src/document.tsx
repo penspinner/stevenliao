@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import * as React from 'react'
 
 import type { ColorScheme } from './types'
@@ -34,38 +34,33 @@ export const Document = ({
   )
 }
 
+const addOrRemoveColorScheme = (media: MediaQueryList | MediaQueryListEvent) => {
+  document.documentElement.classList.toggle('dark', media.matches)
+}
+
 const ColorSchemeScript = ({ colorScheme }: { colorScheme: ColorScheme }) => {
   if (typeof document !== 'undefined') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // oxlint-disable-next-line react-hooks/rules-of-hooks
     React.useLayoutEffect(() => {
       if (colorScheme === 'light') {
         document.documentElement.classList.remove('dark')
       } else if (colorScheme === 'dark') {
         document.documentElement.classList.add('dark')
-      } else if (colorScheme === 'system') {
-        const check = (media: MediaQueryList) => {
-          if (media.matches) {
-            document.documentElement.classList.add('dark')
-          } else {
-            document.documentElement.classList.remove('dark')
-          }
-        }
-
-        const media = window.matchMedia('(prefers-color-scheme: dark)')
-        check(media)
-
-        // @ts-expect-error I can't figure out what TypeScript wants here ...
-        media.addEventListener('change', check)
-        // @ts-expect-error I can't figure out what TypeScript wants here ...
-        return () => media.removeEventListener('change', check)
       } else {
-        console.error('Impossible color scheme state:', colorScheme)
+        const media = globalThis.matchMedia('(prefers-color-scheme: dark)')
+        addOrRemoveColorScheme(media)
+
+        media.addEventListener('change', addOrRemoveColorScheme)
+        return () => {
+          media.removeEventListener('change', addOrRemoveColorScheme)
+        }
       }
     }, [colorScheme])
   }
 
   return (
     <script
+      // oxlint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `
   const colorScheme = ${JSON.stringify(colorScheme)};

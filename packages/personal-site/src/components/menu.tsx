@@ -2,14 +2,14 @@ import { clsx } from 'clsx'
 import * as React from 'react'
 import {
   Button,
-  Menu as RACMenu,
   MenuTrigger,
-  MenuItem as RACMenuItem,
   Popover,
+  Menu as RACMenu,
+  MenuItem as RACMenuItem,
 } from 'react-aria-components'
 import type { PopoverProps } from 'react-aria-components'
 
-type MenuProps = {
+interface MenuProps {
   className?: string
   trigger: React.ReactNode
   children: React.ReactNode

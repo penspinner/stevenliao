@@ -6,21 +6,19 @@ import { SimpleLayout } from '../components/simple-layout'
 export const projectsTitle = 'Projects - Steven Liao'
 export const projectsDescription = 'Projects'
 
-type Project<TLogo> = {
+interface Project<TLogo> {
   name: string
   logo: TLogo
   link: { href: string; label: string }
   description: string
 }
 
-export const Projects = <TLogo,>({
+export const Projects = <TLogo extends string>({
   projects,
-  projectLogoRender = (project) => (
-    <img src={project.logo as string} alt="" className="rounded-full" />
-  ),
+  projectLogoRender = (project) => <img src={project.logo} alt="" className="rounded-full" />,
 }: {
   projects: Project<TLogo>[]
-  projectLogoRender?: (project: Project<TLogo>) => React.ReactElement
+  projectLogoRender?: (project: Project<TLogo>) => React.ReactElement<{ className?: string }>
 }) => {
   return (
     <SimpleLayout
@@ -50,13 +48,9 @@ export const Projects = <TLogo,>({
   )
 }
 
-const ProjectLogo = ({ children, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+const ProjectLogo = ({ children }: { children?: React.ReactElement<{ className?: string }> }) => {
   const Component = children ? Slot : 'img'
-  return (
-    <Component {...props} className="h-8 w-8">
-      {children}
-    </Component>
-  )
+  return <Component className="h-8 w-8">{children}</Component>
 }
 
 const LinkIcon = (props: React.SVGProps<SVGSVGElement>) => {

@@ -18,8 +18,8 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    onFormSubmit: (e) => {
-      e.preventDefault()
+    onFormSubmit: (event) => {
+      event.preventDefault()
     },
   },
   play: async ({ canvas }) => {

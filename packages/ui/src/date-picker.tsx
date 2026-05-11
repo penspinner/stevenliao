@@ -6,14 +6,14 @@ import {
   Label,
   RangeCalendar,
 } from '@heroui/react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import type { ComponentProps } from 'react'
 
 export type DatePickerProps = ComponentProps<typeof HeroDatePicker>
 
 export const DatePicker = ({ label, ...props }: DatePickerProps & { label?: React.ReactNode }) => (
   <HeroDatePicker {...props} className="relative inline-flex flex-col text-left">
-    {label && <Label className="text-sm text-gray-800">{label}</Label>}
+    {label != null && <Label className="text-sm text-gray-800">{label}</Label>}
     <div className="group flex text-sm">
       <div className="relative flex rounded-l border border-gray-300 bg-white px-3 py-2 pr-10 focus-within:border-sky-500 focus-within:ring-1 focus-within:ring-sky-500">
         <DateField.Input>
@@ -105,7 +105,9 @@ export const DateRangePicker = ({
   ...props
 }: DateRangePickerProps & { label?: React.ReactNode }) => (
   <HeroDateRangePicker {...props} className="relative inline-flex flex-col space-y-2 text-left">
-    {label && <Label className="text-sm font-medium text-gray-700">{label}</Label>}
+    {label !== null && label !== undefined && (
+      <Label className="text-sm font-medium text-gray-700">{label}</Label>
+    )}
     <div className="flex text-sm">
       <div className="relative flex rounded-l border border-gray-300 bg-white px-3 py-2 pr-10 focus-within:border-sky-500 focus-within:ring-1 focus-within:ring-sky-500">
         <DateField.Input slot="start">

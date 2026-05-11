@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server'
 
-export const POST = async () => {
+export const POST = () => {
   return NextResponse.json({ ok: true })
 }
 
-export const GET = async () => {
+export const GET = () => {
   return NextResponse.json({ colorScheme: true })
 }

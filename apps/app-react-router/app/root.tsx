@@ -1,17 +1,17 @@
 import ProgressBar from '@badrap/bar-of-progress'
-import { Document as Doc, RootErrorBoundary, RootNotFound } from 'personal-site'
+import { Document as Doc, RootErrorBoundary, RootNotFound, isColorScheme } from 'personal-site'
 import type { ColorScheme } from 'personal-site'
 import { Layout as PageLayout } from 'personal-site/client'
 import * as React from 'react'
 import { useLocale } from 'react-aria-components'
 import {
-  isRouteErrorResponse,
   Link,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  isRouteErrorResponse,
   useFetcher,
   useLoaderData,
   useLocation,
@@ -89,6 +89,9 @@ export const ErrorBoundary = () => {
         case 404: {
           return <RootNotFound />
         }
+        default: {
+          return <RootErrorBoundary thrown={routeError} />
+        }
       }
     }
 
@@ -143,10 +146,8 @@ const Document = ({
 const useColorSchemeFetcher = () => {
   const loaderData = useLoaderData<typeof loader>()
   const colorSchemeFetcher = useFetcher()
-  const formData = colorSchemeFetcher.formData
-  const optimisticColorScheme = formData?.has('colorScheme')
-    ? (formData.get('colorScheme') as ColorScheme)
-    : null
+  const formDataColorScheme = colorSchemeFetcher.formData?.get('colorScheme')
+  const optimisticColorScheme = isColorScheme(formDataColorScheme) ? formDataColorScheme : null
   const ColorSchemeForm = React.useCallback(
     (props: Omit<React.ComponentProps<typeof colorSchemeFetcher.Form>, 'action' | 'method'>) => (
       <colorSchemeFetcher.Form {...props} action="/color-scheme" method="POST" />
@@ -154,5 +155,5 @@ const useColorSchemeFetcher = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [colorSchemeFetcher.Form],
   )
-  return { colorScheme: optimisticColorScheme || loaderData.colorScheme, ColorSchemeForm }
+  return { colorScheme: optimisticColorScheme ?? loaderData.colorScheme, ColorSchemeForm }
 }

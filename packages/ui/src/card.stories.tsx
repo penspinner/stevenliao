@@ -22,7 +22,7 @@ export const Default: StoryObj = {
   ),
   play: async ({ canvas }) => {
     await expect(canvas.getByText('Building an accessible component library')).toBeVisible()
-    await expect(canvas.getByText(/reusable, accessible/)).toBeVisible()
+    await expect(canvas.getByText(/reusable, accessible/u)).toBeVisible()
     await expect(canvas.getByText('Read article')).toBeVisible()
   },
 }

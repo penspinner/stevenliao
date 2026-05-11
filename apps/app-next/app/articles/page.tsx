@@ -1,4 +1,3 @@
-import type { Article } from 'personal-site'
 import { Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
 
 export const metadata = {
@@ -7,14 +6,12 @@ export const metadata = {
 }
 
 const ArticlesPage = async () => {
-  const articles: Article[] = await (
-    await getArticles({
-      username: '2ezpz2plzme',
-      page: '1',
-      per_page: '3',
-    })
-  ).json()
-  return <Articles articles={articles} />
+  const articlesResult = await getArticles({
+    username: '2ezpz2plzme',
+    page: '1',
+    per_page: '3',
+  })
+  return <Articles articlesResult={articlesResult} />
 }
 
 export default ArticlesPage

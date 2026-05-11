@@ -1,32 +1,95 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["typescript", "react", "unicorn", "import", "jsx-a11y", "nextjs"],
+  "plugins": ["typescript", "react", "unicorn", "import", "jsx-a11y"],
   "options": {
     "typeAware": true,
     "typeCheck": true,
     "reportUnusedDisableDirectives": "error"
   },
   "categories": {
-    "correctness": "error"
+    "correctness": "error",
+    "nursery": "error",
+    "pedantic": "error",
+    "perf": "error",
+    "restriction": "error",
+    "style": "error",
+    "suspicious": "error"
   },
   "env": {
     "browser": true,
-    "node": true,
-    "es2024": true
+    "es2025": true
   },
   "rules": {
+    "eslint/arrow-body-style": "off",
+    "eslint/complexity": "off",
+    "eslint/curly": "off",
+    "eslint/eqeqeq": ["error", "smart"],
+    "eslint/func-name-matching": "off",
+    "eslint/func-style": "off",
+    "eslint/max-lines": "off",
+    "eslint/max-lines-per-function": "off",
+    "eslint/no-console": ["error", { "allow": ["error"] }],
+    "eslint/no-duplicate-imports": "off",
+    "eslint/no-eq-null": "off",
+    "eslint/no-magic-numbers": "off",
+    "eslint/no-negated-condition": "off",
+    "eslint/no-nested-ternary": "off",
+    "eslint/no-ternary": "off",
+    "eslint/no-undefined": "off",
+    "eslint/no-use-before-define": "off",
+    "eslint/no-void": ["error", { "allowAsStatement": true }],
+    "eslint/sort-keys": "off",
+    "eslint/sort-imports": ["error", { "ignoreDeclarationSort": true }],
+    "import/exports-last": "off",
+    "import/group-exports": "off",
+    "import/no-anonymous-default-export": "off",
+    "import/no-relative-parent-imports": "off",
     "import/no-default-export": "error",
-    "no-unused-expressions": "off",
+    "import/no-named-export": "off",
+    "import/no-namespace": "off",
+    "import/no-unassigned-import": ["error", { "allow": ["**/*.css"] }],
+    "import/prefer-default-export": "off",
+    "react/button-has-type": "off",
+    "react/forbid-component-props": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
+    "react/jsx-max-depth": ["error", { "max": 10 }],
+    "react/jsx-props-no-spreading": "off",
+    "react/no-multi-comp": "off",
+    "react/only-export-components": "off",
+    "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
+    "typescript/consistent-return": "off",
     "typescript/consistent-type-imports": "error",
+    "typescript/explicit-function-return-type": "off",
+    "typescript/explicit-module-boundary-types": "off",
     "typescript/no-deprecated": "error",
     "typescript/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "typescript/prefer-readonly-parameter-types": "off",
+    "typescript/promise-function-async": "off",
+    "typescript/require-await": "error",
+    "typescript/strict-boolean-expressions": [
+      "error",
+      {
+        "allowString": true,
+        "allowNumber": true,
+        "allowNullableObject": true,
+        "allowNullableBoolean": true,
+        "allowNullableString": true,
+        "allowNullableNumber": true,
+        "allowAny": true
+      }
+    ],
     "unicorn/filename-case": ["error", { "case": "kebabCase" }],
-    "unicorn/no-new-array": "off"
+    "unicorn/no-await-expression-member": "off",
+    "unicorn/no-negated-condition": "off",
+    "unicorn/no-nested-ternary": "off",
+    "unicorn/no-null": "off",
+    "unicorn/numeric-separators-style": "off"
   },
   "overrides": [
     {
+      "plugins": ["nextjs"],
       "files": [
         "apps/app-next/app/**/*.{ts,tsx}",
         "apps/app-next/next.config.{js,mjs}",
@@ -35,6 +98,12 @@
       "rules": {
         "import/no-default-export": "off",
         "unicorn/filename-case": ["error", { "cases": { "camelCase": true, "kebabCase": true } }]
+      }
+    },
+    {
+      "files": ["apps/app-react-router/app/entry.server.tsx"],
+      "env": {
+        "node": true
       }
     },
     {
@@ -61,19 +130,6 @@
       }
     },
     {
-      "files": [
-        "apps/app-tanstack-react-start/**/*",
-        "apps/app-react-router/**/*",
-        "packages/personal-site/**/*",
-        "packages/ui/**/*"
-      ],
-      "rules": {
-        "nextjs/no-img-element": "off",
-        "nextjs/no-html-link-for-pages": "off",
-        "nextjs/no-head-element": "off"
-      }
-    },
-    {
       "files": ["**/*.stories.*", "**/.storybook/*"],
       "rules": {
         "import/no-default-export": "off"
@@ -92,16 +148,19 @@
         "apps/app-tanstack-react-start/vite.config.ts"
       ],
       "rules": {
-        "import/no-default-export": "off",
-        "nextjs/no-img-element": "off",
-        "nextjs/no-html-link-for-pages": "off",
-        "nextjs/no-head-element": "off"
+        "import/no-default-export": "off"
       }
     },
     {
       "files": ["apps/app-tanstack-react-start/src/routes/**/*"],
       "rules": {
         "unicorn/filename-case": ["error", { "cases": { "camelCase": true, "kebabCase": true } }]
+      }
+    },
+    {
+      "files": ["*.d.ts"],
+      "rules": {
+        "import/unambiguous": "off"
       }
     }
   ],

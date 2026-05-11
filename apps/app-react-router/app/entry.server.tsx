@@ -10,6 +10,7 @@ const vercelSkewProtectionEnabled = process.env.VERCEL_SKEW_PROTECTION_ENABLED =
 
 export const streamTimeout = 10_000
 
+// oxlint-disable-next-line max-params
 export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
@@ -17,7 +18,7 @@ export default async function handleRequest(
   routerContext: EntryContext,
 ) {
   const acceptLanguage = request.headers.get('accept-language')
-  const lang = acceptLanguage?.split(/[,;]/)[0] || 'en-US'
+  const lang = acceptLanguage?.split(/[,;]/u)[0] ?? 'en-US'
 
   let status = responseStatusCode
   const body = await renderToReadableStream(
@@ -39,7 +40,7 @@ export default async function handleRequest(
   }
 
   responseHeaders.set('Content-Type', 'text/html')
-  if (vercelSkewProtectionEnabled && vercelDeploymentId) {
+  if (vercelSkewProtectionEnabled && vercelDeploymentId !== '') {
     responseHeaders.append('Set-Cookie', `__vdpl=${vercelDeploymentId}; HttpOnly`)
   }
 

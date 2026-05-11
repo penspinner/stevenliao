@@ -36,17 +36,15 @@ const MailIcon = (props: React.SVGProps<SVGSVGElement>) => {
   )
 }
 
-const Img = ({
-  asChild,
-  ...props
-}: React.ImgHTMLAttributes<HTMLImageElement> & { asChild?: boolean }) => {
-  const Component = asChild ? Slot : 'img'
+const Img = ({ children }: { children?: React.ReactElement }) => {
+  const Component = children ? Slot : 'img'
   return (
     <Component
-      {...props}
       sizes="(min-width: 1024px) 32rem, 20rem"
       className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
-    />
+    >
+      {children}
+    </Component>
   )
 }
 
@@ -59,7 +57,7 @@ export const About = ({ avatarImg }: { avatarImg: React.ReactElement }) => {
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
-            <Img asChild={!!avatarImg}>{avatarImg}</Img>
+            <Img>{avatarImg}</Img>
           </div>
         </div>
         <div className="lg:order-first lg:row-span-2">

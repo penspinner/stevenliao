@@ -1,6 +1,5 @@
-import type { Article } from 'personal-site'
 import { Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
-import { useLoaderData } from 'react-router'
+import { data, useLoaderData } from 'react-router'
 
 import { createCacheControlHeaders } from '#utils'
 
@@ -11,24 +10,25 @@ export const meta: Route.MetaFunction = () => {
 }
 
 export const loader = async () => {
-  const articles: Article[] = await (
-    await getArticles({
-      username: '2ezpz2plzme',
-      page: '1',
-      per_page: '3',
-    })
-  ).json()
-  return new Response(JSON.stringify({ articles }), {
-    headers: {
-      'Content-Type': 'application/json',
-      ...createCacheControlHeaders({ visibility: 'public', maxage: 900 }),
-    },
+  const articlesResult = await getArticles({
+    username: '2ezpz2plzme',
+    page: '1',
+    per_page: '3',
   })
+  return data(
+    { articlesResult },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        ...createCacheControlHeaders({ visibility: 'public', maxage: 900 }),
+      },
+    },
+  )
 }
 
 const ArticlesPage = () => {
-  const { articles } = useLoaderData<{ articles: Article[] }>()
-  return <Articles articles={articles} />
+  const { articlesResult } = useLoaderData<typeof loader>()
+  return <Articles articlesResult={articlesResult} />
 }
 
 export default ArticlesPage

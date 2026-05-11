@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent } from 'storybook/test'
 
 import { Button } from './button'
-import { toast, ToastProvider } from './toast'
+import { ToastProvider, toast } from './toast'
 
 const meta = {
   component: ToastProvider,
@@ -15,10 +15,20 @@ export const Default: Story = {
   render: () => (
     <>
       <div className="flex gap-2">
-        <Button onPress={() => toast.success('Operation completed successfully.')}>
+        <Button
+          onPress={() => {
+            toast.success('Operation completed successfully.')
+          }}
+        >
           Show Success Toast
         </Button>
-        <Button onPress={() => toast.danger('Something went wrong.')}>Show Error Toast</Button>
+        <Button
+          onPress={() => {
+            toast.danger('Something went wrong.')
+          }}
+        >
+          Show Error Toast
+        </Button>
       </div>
       <ToastProvider />
     </>

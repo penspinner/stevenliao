@@ -5,7 +5,6 @@ import * as React from 'react'
 import { RootLayoutComponent } from './layout-component'
 
 import './tailwind.css'
-import 'focus-visible'
 
 export const viewport = {
   width: 'device-width',

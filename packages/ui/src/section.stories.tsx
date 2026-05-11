@@ -23,7 +23,7 @@ export const Default: Story = {
   ),
   play: async ({ canvas }) => {
     await expect(canvas.getByText('Work Experience')).toBeVisible()
-    await expect(canvas.getByText(/Senior Engineer/)).toBeVisible()
+    await expect(canvas.getByText(/Senior Engineer/u)).toBeVisible()
   },
 }
 

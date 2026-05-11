@@ -1,5 +1,5 @@
-import { createFileRoute, type ErrorComponentProps } from '@tanstack/react-router'
-import type { Article } from 'personal-site'
+import { createFileRoute } from '@tanstack/react-router'
+import type { ErrorComponentProps } from '@tanstack/react-router'
 import {
   Index,
   PaddedErrorBoundary,
@@ -15,14 +15,13 @@ export const Route = createFileRoute('/')({
     meta: [{ title: indexTitle }, { name: 'description', content: indexDescription }],
   }),
   loader: async () => {
-    const response = await getArticles({
+    const articlesResult = await getArticles({
       username: '2ezpz2plzme',
       page: '1',
       per_page: '3',
     })
-    const articles: Article[] = await response.json()
     return {
-      articles,
+      articles: articlesResult.data ?? [],
       headers: createCacheControlHeaders({ visibility: 'public', maxage: 900 }),
     }
   },

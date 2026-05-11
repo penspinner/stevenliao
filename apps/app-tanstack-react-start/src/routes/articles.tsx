@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router'
-import type { Article } from 'personal-site'
 import { Articles, articlesDescription, articlesTitle, getArticles } from 'personal-site'
 
 import { createCacheControlHeaders } from '#utils'
@@ -9,14 +8,13 @@ export const Route = createFileRoute('/articles')({
     meta: [{ title: articlesTitle }, { name: 'description', content: articlesDescription }],
   }),
   loader: async () => {
-    const response = await getArticles({
+    const articlesResult = await getArticles({
       username: '2ezpz2plzme',
       page: '1',
       per_page: '3',
     })
-    const articles: Article[] = await response.json()
     return {
-      articles,
+      articlesResult,
       headers: createCacheControlHeaders({ visibility: 'public', maxage: 900 }),
     }
   },
@@ -24,6 +22,6 @@ export const Route = createFileRoute('/articles')({
 })
 
 function ArticlesPage() {
-  const { articles } = Route.useLoaderData()
-  return <Articles articles={articles} />
+  const { articlesResult } = Route.useLoaderData()
+  return <Articles articlesResult={articlesResult} />
 }

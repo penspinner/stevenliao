@@ -11,7 +11,6 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.0",
     "@tailwindcss/typography": "^0.5.19",
-    "focus-visible": "^5.2.1",
     "next": "^16.2.6",
     "personal-site": "workspace:*",
     "react": "^19.2.6",
