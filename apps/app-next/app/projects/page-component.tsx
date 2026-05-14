@@ -11,7 +11,7 @@ export const ProjectsPageComponent = () => {
           name: 'Steven Liao',
           description: 'This website',
           link: { href: 'https://github.com/penspinner/stevenliao', label: 'Steven Liao' },
-          logo: 'https://stevenliao.vercel.app/images/logo.png',
+          logo: '/images/shared/logo.png',
         },
         {
           name: 'Advent of Code',
@@ -30,7 +30,7 @@ export const ProjectsPageComponent = () => {
             href: 'https://github.com/penspinner/algorithms',
             label: 'github.com/penspinner/algorithms',
           },
-          logo: 'https://stevenliao.vercel.app/images/algorithms.png',
+          logo: '/images/shared/algorithms.png',
         },
         {
           name: 'Steven Liao (old)',
@@ -39,7 +39,7 @@ export const ProjectsPageComponent = () => {
             href: 'https://penspinner.github.io',
             label: 'penspinner.github.io',
           },
-          logo: 'https://stevenliao.vercel.app/images/logo.png',
+          logo: '/images/shared/logo.png',
         },
       ]}
       projectLogoRender={(project) => <Image src={project.logo} alt="" height="32" width="32" />}

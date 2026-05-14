@@ -7,7 +7,7 @@ export const meta: Route.MetaFunction = () => {
 }
 
 const AboutPage = () => {
-  return <About avatarImg={<img src="/images/avatar.jpg" alt="" />} />
+  return <About avatarImg={<img src="/images/shared/avatar.jpg" alt="" />} />
 }
 
 export default AboutPage

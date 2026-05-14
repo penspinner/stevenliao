@@ -74,7 +74,7 @@ function Root() {
       body={
         <>
           <PageLayout
-            avatarImg={<img src="/images/logo.png" alt="" />}
+            avatarImg={<img src="/images/shared/logo.png" alt="" />}
             colorScheme={effectiveColorScheme}
             colorSchemeToggleRender={({ children }) => (
               <form
@@ -120,7 +120,7 @@ function RootError({ error }: { error: unknown }) {
       colorScheme="system"
       body={
         <PageLayout
-          avatarImg={<img src="/images/logo.png" alt="" />}
+          avatarImg={<img src="/images/shared/logo.png" alt="" />}
           colorScheme="system"
           currentPathname={pathname}
           linkRender={({ href, ...props }) => <Link preload="intent" to={href ?? ''} {...props} />}

@@ -16,7 +16,7 @@ function ProjectsPage() {
           name: 'Steven Liao',
           description: 'This website',
           link: { href: 'https://github.com/penspinner/stevenliao', label: 'Steven Liao' },
-          logo: '/images/logo.png',
+          logo: '/images/shared/logo.png',
         },
         {
           name: 'Advent of Code',
@@ -35,7 +35,7 @@ function ProjectsPage() {
             href: 'https://github.com/penspinner/algorithms',
             label: 'github.com/penspinner/algorithms',
           },
-          logo: '/images/algorithms.png',
+          logo: '/images/shared/algorithms.png',
         },
         {
           name: 'Steven Liao (old)',
@@ -44,7 +44,7 @@ function ProjectsPage() {
             href: 'https://penspinner.github.io',
             label: 'penspinner.github.io',
           },
-          logo: '/images/logo.png',
+          logo: '/images/shared/logo.png',
         },
       ]}
     />

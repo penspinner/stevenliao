@@ -37,7 +37,10 @@ const IndexPage = () => {
   return (
     <Index
       articles={articles}
-      photos={[{ src: '/images/algorithms.png' }, { src: '/images/computer-hackermans.png' }]}
+      photos={[
+        { src: '/images/shared/algorithms.png' },
+        { src: '/images/shared/computer-hackermans.png' },
+      ]}
       roles={[
         {
           company: 'Roofstock',

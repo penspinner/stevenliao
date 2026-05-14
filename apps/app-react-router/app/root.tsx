@@ -66,7 +66,7 @@ const Root = () => {
   return (
     <Document colorScheme={colorScheme}>
       <PageLayout
-        avatarImg={<img src="/images/logo.png" alt="" />}
+        avatarImg={<img src="/images/shared/logo.png" alt="" />}
         colorScheme={colorScheme}
         colorSchemeToggleRender={({ children }) => <ColorSchemeForm>{children}</ColorSchemeForm>}
         currentPathname={location.pathname}
@@ -100,7 +100,7 @@ export const ErrorBoundary = () => {
   return (
     <Document colorScheme="system">
       <PageLayout
-        avatarImg={<img src="/images/logo.png" alt="" />}
+        avatarImg={<img src="/images/shared/logo.png" alt="" />}
         colorScheme="system"
         currentPathname={location.pathname}
         linkRender={({ href, ...props }) => <Link prefetch="intent" to={href ?? ''} {...props} />}

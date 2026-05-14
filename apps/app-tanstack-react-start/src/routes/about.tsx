@@ -9,5 +9,5 @@ export const Route = createFileRoute('/about')({
 })
 
 function AboutPage() {
-  return <About avatarImg={<img src="/images/avatar.jpg" alt="" />} />
+  return <About avatarImg={<img src="/images/shared/avatar.jpg" alt="" />} />
 }

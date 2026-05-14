@@ -28,13 +28,7 @@ export const RootLayoutComponent = ({
       body={
         <Layout
           avatarImg={
-            <Image
-              priority
-              src="https://stevenliao.vercel.app/images/logo.png"
-              width="300"
-              height="300"
-              alt=""
-            />
+            <Image priority src="/images/shared/logo.png" width="300" height="300" alt="" />
           }
           colorScheme={colorScheme}
           colorSchemeToggleRender={({ children: colorSchemeChildren }) => (
